@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--<com.gxz.PagerSlidingTabStrip
+            android:id="@+id/psts_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:pstsTabBackground="@android:color/transparent"
+            app:pstsDividerColor="@android:color/transparent"
+            app:pstsIndicatorColor="@color/red"
+            app:pstsIndicatorHeight="3dp"
+            app:pstsUnderlineColor="@android:color/transparent"
+            app:pstsUnderlineHeight="0dp"
+            app:pstsShouldExpand="true"
+            app:selectedTabTextColor="@color/red" />-->
+
+        <com.gigamole.navigationtabstrip.NavigationTabStrip
+            android:id="@+id/psts_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:nts_color="#ff0000"
+            app:nts_weight="3dp"
+            app:nts_size="15sp"
+            app:nts_factor="2.5"
+            app:nts_type="line"
+            app:nts_gravity="bottom"
+            app:nts_typeface="fonts/typeface.otf"
+            app:nts_corners_radius="1.5dp"
+            app:nts_animation_duration="300"
+            app:nts_active_color="#ff0000"
+            app:nts_inactive_color="#000000"
+            >
+        </com.gigamole.navigationtabstrip.NavigationTabStrip>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

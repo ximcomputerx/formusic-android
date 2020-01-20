@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">余音</string>
+
+    <string name="app_back_exit">再按一次退出应用</string>
+
+    <string name="load_error">网络错误</string>
+
+    <string name="load_failed">加载失败</string>
+    <string name="load_no_more">没有更多</string>
+    <string name="loading_data">正在加载</string>
+
+    <!-- navigation -->
+    <string name="navigation_music">音乐</string>
+    <string name="navigation_my">我的</string>
+
+    <string name="my_music">我的</string>
+    <string name="rank_music">排行榜</string>
+    <string name="list_music">歌单</string>
+    <string name="singer_music">歌手</string>
+
+    <string name="play_time_start">00:00</string>
+
+    <string name="mode_loop">列表循环</string>
+    <string name="mode_shuffle">随机播放</string>
+    <string name="mode_one">单曲循环</string>
+</resources>

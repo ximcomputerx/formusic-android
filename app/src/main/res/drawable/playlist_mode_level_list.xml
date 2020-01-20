@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@mipmap/tool_repeat_all_small_light_list"
+        android:maxLevel="0" />
+    <item
+        android:drawable="@mipmap/tool_repeat_shuffle_small_light_list"
+        android:maxLevel="1" />
+    <item
+        android:drawable="@mipmap/tool_repeat_current_small_light_list"
+        android:maxLevel="2" />
+</level-list>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ximcomputerx.formusic">
+
+    <!-- baidumap -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:name="com.ximcomputerx.formusic.application.MusicApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppBaseTheme"
+        android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="fhCSjsodLH1AoTyWVyMObgex0oIEqpYg" />
+
+        <!--适配华为刘海屏-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!--适配小米刘海屏-->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ximcomputerx.formusic.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <receiver android:name="com.ximcomputerx.formusic.receiver.StatusBarReceiver">
+            <intent-filter>
+                <action android:name="com.ximcomputerx.music.STATUS_BAR_ACTIONS" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.ximcomputerx.formusic.ui.activity.welcome.WelcomActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppWelcomeTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.main.MainActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.search.SearchActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.play.PlayActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.play.PlayListActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.song.SongListActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.singer.SingerSongListActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.my.HistoryActivity"></activity>
+        <activity android:name="com.ximcomputerx.formusic.ui.activity.my.LikeActivity"></activity>
+
+        <service android:name="com.ximcomputerx.formusic.service.DownloadService"></service>
+        <service android:name="com.ximcomputerx.formusic.service.PlayService"></service>
+    </application>
+
+</manifest>
