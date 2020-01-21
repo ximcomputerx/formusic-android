@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 
 import es.dmoral.toasty.Toasty;
 
@@ -46,8 +46,8 @@ public class ToastUtil {
     }
 
     public static void showToast(String msg) {
-        //Toast.makeText(MusicApplication.getInstance().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-        Toasty.normal(MusicApplication.getInstance().getApplicationContext(), msg).show();
+        //Toast.makeText(ForMusicApplication.getInstance().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        Toasty.normal(ForMusicApplication.getInstance().getApplicationContext(), msg).show();
     }
 
 }

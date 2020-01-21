@@ -11,7 +11,7 @@
         android:background="@drawable/btn_action_bg_selector"
         android:contentDescription="@null"
         android:scaleType="centerInside"
-        android:src="@mipmap/ic_title_bar_back" />
+        android:src="@mipmap/icon_back_black" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,10 +24,10 @@
             android:id="@+id/tv_list_music"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="最近播放"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 

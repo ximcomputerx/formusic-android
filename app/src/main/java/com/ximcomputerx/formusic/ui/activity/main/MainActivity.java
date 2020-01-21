@@ -1,6 +1,7 @@
 package com.ximcomputerx.formusic.ui.activity.main;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.gyf.immersionbar.ImmersionBar;
 import com.ximcomputerx.formusic.R;
@@ -30,13 +33,18 @@ import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.play.PlayManager;
 import com.ximcomputerx.formusic.service.PlayService;
 import com.ximcomputerx.formusic.ui.activity.search.SearchActivity;
+import com.ximcomputerx.formusic.ui.activity.setting.AboutActivity;
+import com.ximcomputerx.formusic.ui.activity.setting.IssuesActivity;
+import com.ximcomputerx.formusic.ui.activity.setting.ScanActivity;
 import com.ximcomputerx.formusic.ui.adapter.FragmentMainAdapter;
 import com.ximcomputerx.formusic.ui.fragment.MixFragment;
 import com.ximcomputerx.formusic.ui.fragment.MyFragment;
 import com.ximcomputerx.formusic.ui.fragment.PlayFragment;
 import com.ximcomputerx.formusic.ui.fragment.RankFragment;
 import com.ximcomputerx.formusic.ui.fragment.SingerFragment;
+import com.ximcomputerx.formusic.utils.ActivityManagerUtil;
 import com.ximcomputerx.formusic.utils.DoubleClickExitUtil;
+import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
 import com.ximcomputerx.formusic.view.PlayListDialog;
 
 import org.litepal.LitePal;
@@ -46,6 +54,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * @AUTHOR HACKER
@@ -81,6 +90,10 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Bind(R.id.ll_exit)
     protected LinearLayout ll_exit;
+    @Bind(R.id.iv_icon)
+    protected ImageView iv_icon;
+    @Bind(R.id.iv_icon_background)
+    protected ImageView iv_icon_background;
 
     private RankFragment rankFragment;
     private MixFragment listFragment;
@@ -107,8 +120,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     protected void initView() {
-        ImmersionBar.with(this).statusBarView(view).statusBarColor(R.color.white)
+        ImmersionBar.with(this)
+                .statusBarView(view)
+                .statusBarColor(R.color.white)
                 .statusBarDarkFont(true)
+                //.fitsSystemWindows(true)
                 .navigationBarColor(R.color.white)
                 .navigationBarDarkIcon(true).init();
 
@@ -137,6 +153,14 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     protected void initData() {
         doubleClickExitUtil = new DoubleClickExitUtil();
+        GlideImageLoaderUtil.displayRoundImage(R.mipmap.ic_launcher, iv_icon, R.mipmap.ic_launcher);
+        /*Glide.with(this).load(R.mipmap.ic_launcher)
+                .dontAnimate()
+                //.placeholder(Color.GRAY)
+                //.error(Color.GRAY)
+                .transform(new BlurTransformation(25, 3))
+                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3)))
+                .into(iv_icon_background);*/
     }
 
     @Override
@@ -146,7 +170,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         super.onDestroy();
     }
 
-    @OnClick({R.id.tv_rank_music, R.id.tv_list_music, R.id.tv_my_music, R.id.tv_singer_list, R.id.iv_menu, R.id.iv_search, R.id.fl_play_bar, R.id.ll_exit})
+    @OnClick({R.id.tv_rank_music, R.id.tv_list_music, R.id.tv_my_music, R.id.tv_singer_list, R.id.iv_menu, R.id.iv_search, R.id.fl_play_bar, R.id.ll_exit,
+            R.id.ll_about, R.id.ll_issues, R.id.ll_download})
     protected void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_rank_music:
@@ -165,15 +190,37 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 dl_container.openDrawer(GravityCompat.START);
                 break;
             case R.id.iv_search:
-                Intent intent = new Intent(this, SearchActivity.class);
+                intent = new Intent(this, SearchActivity.class);
                 this.startActivity(intent);
                 break;
             case R.id.fl_play_bar:
                 showPlayingFragment();
                 break;
             case R.id.ll_exit:
+                closeDrawer();
                 exit();
                 break;
+            case R.id.ll_about:
+                closeDrawer();
+                intent = new Intent(this, AboutActivity.class);
+                this.startActivity(intent);
+                break;
+            case R.id.ll_issues:
+                closeDrawer();
+                intent = new Intent(this, IssuesActivity.class);
+                this.startActivity(intent);
+                break;
+            case R.id.ll_download:
+                closeDrawer();
+                intent = new Intent(this, ScanActivity.class);
+                this.startActivity(intent);
+                break;
+        }
+    }
+
+    private void closeDrawer() {
+        if (dl_container.isDrawerOpen(GravityCompat.START)) {
+            dl_container.closeDrawers();
         }
     }
 
@@ -338,8 +385,10 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         if (!slide) {
             ImmersionBar.with(this).reset();
             ImmersionBar.with(this)
+                    .statusBarView(view)
                     .statusBarColor(R.color.transparent)
                     .statusBarDarkFont(true)
+                    //.fitsSystemWindows(true)
                     .navigationBarColor(R.color.white)
                     .navigationBarDarkIcon(true).init();
             slide = true;
@@ -352,9 +401,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     public void onDrawerClosed(@NonNull View drawerView) {
-        ImmersionBar.with(this).reset();
-        ImmersionBar.with(this).statusBarColor(R.color.white)
+        ImmersionBar.with(this)
+                .statusBarView(view)
+                .statusBarColor(R.color.white)
                 .statusBarDarkFont(true)
+                //.fitsSystemWindows(true)
                 .navigationBarColor(R.color.white)
                 .navigationBarDarkIcon(true).init();
         slide = false;
@@ -378,22 +429,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         super.onBackPressed();
     }
 
-    /*@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mPlayFragment != null && isPlayFragmentShow) {
-                hidePlayingFragment();
-                return true;
-            }
-            if (dl_container.isDrawerOpen(GravityCompat.START)) {
-                dl_container.closeDrawers();
-                return true;
-            }
-            return doubleClickExitUtil.onKeyDown(keyCode, event);
-        }
-        return super.onKeyDown(keyCode, event);
-    }*/
-
     public void playList(int type) {
         if (type == DIALOG_MAIN) {
             PlayListDialog playListDialog = new PlayListDialog(this);
@@ -410,8 +445,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
     private void exit() {
-        this.finish();
-        PlayService.startCommand(this, Actions.ACTION_STOP);
+        ActivityManagerUtil.create().AppExit();
     }
 
 }

@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 
 /**
  * @AUTHOR HACKER
@@ -33,7 +33,7 @@ public class GlideImageLoaderUtil {
     }
 
     public static void displayImage(String path, ImageView imageView) {
-        Glide.with(MusicApplication.getInstance().getApplicationContext())
+        Glide.with(ForMusicApplication.getInstance().getApplicationContext())
                 .load(path)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .skipMemoryCache(true)
@@ -41,7 +41,7 @@ public class GlideImageLoaderUtil {
     }
 
     public static void displayImage(String path, ImageView imageView, int resourceId) {
-        Glide.with(MusicApplication.getInstance().getApplicationContext())
+        Glide.with(ForMusicApplication.getInstance().getApplicationContext())
                 .load(path)
                 .placeholder(resourceId)
                 .error(resourceId)
@@ -62,13 +62,28 @@ public class GlideImageLoaderUtil {
     }
 
     public static void displayRoundImage(String path, ImageView imageView, int resourceId) {
-        Glide.with(MusicApplication.getInstance().getApplicationContext())
+        Glide.with(ForMusicApplication.getInstance().getApplicationContext())
                 .load(path)
                 //.dontAnimate()
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .thumbnail(Glide.with(MusicApplication.getInstance().getApplicationContext()).load(resourceId)
-                        .transform(new CenterCrop(), new GlideRoundTransform(MusicApplication.getInstance().getApplicationContext(), 10)))
-                .transform(new CenterCrop(), new GlideRoundTransform(MusicApplication.getInstance().getApplicationContext(), 10))
+                .thumbnail(Glide.with(ForMusicApplication.getInstance().getApplicationContext()).load(resourceId)
+                        .transform(new CenterCrop(), new GlideRoundTransform(ForMusicApplication.getInstance().getApplicationContext(), 10)))
+                .transform(new CenterCrop(), new GlideRoundTransform(ForMusicApplication.getInstance().getApplicationContext(), 10))
+                //.placeholder(resourceId)
+                //.error(resourceId)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .skipMemoryCache(true)
+                .into(imageView);
+    }
+
+    public static void displayRoundImage(Integer resource, ImageView imageView, int resourceId) {
+        Glide.with(ForMusicApplication.getInstance().getApplicationContext())
+                .load(resourceId)
+                //.dontAnimate()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .thumbnail(Glide.with(ForMusicApplication.getInstance().getApplicationContext()).load(resourceId)
+                        .transform(new CenterCrop(), new GlideRoundTransform(ForMusicApplication.getInstance().getApplicationContext(), 10)))
+                .transform(new CenterCrop(), new GlideRoundTransform(ForMusicApplication.getInstance().getApplicationContext(), 10))
                 //.placeholder(resourceId)
                 //.error(resourceId)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

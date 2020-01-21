@@ -111,6 +111,6 @@ public class MixFragment3 extends BaseFragment implements SwipeRecyclerView.Load
 
     @Override
     public void onLoadMore() {
-        initMixData(false);
+        initMixData(true);
     }
 }

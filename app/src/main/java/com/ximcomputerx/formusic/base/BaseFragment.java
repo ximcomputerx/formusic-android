@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.squareup.leakcanary.RefWatcher;
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 import com.ximcomputerx.formusic.network.ApiWrapper;
 
 import java.lang.ref.WeakReference;
@@ -70,12 +70,12 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = MusicApplication.getRefWatcher(getActivity());
+        RefWatcher refWatcher = ForMusicApplication.getRefWatcher(getActivity());
         refWatcher.watch(this);
     }
 
-    public MusicApplication getApp() {
-        return (MusicApplication) MusicApplication.getInstance();
+    public ForMusicApplication getApp() {
+        return (ForMusicApplication) ForMusicApplication.getInstance();
     }
 
     private WeakReference<Dialog> netDialog;

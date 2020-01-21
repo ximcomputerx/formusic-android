@@ -2,7 +2,7 @@ package com.ximcomputerx.formusic.utils;
 
 import android.content.res.Resources;
 
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 
 /**
  * Created by jingbin on 2016/11/22.
@@ -12,7 +12,7 @@ public class CommonUtils {
 
 
     private static Resources getResoure() {
-        return MusicApplication.getInstance().getResources();
+        return ForMusicApplication.getInstance().getResources();
     }
 
     public static String[] getStringArray(int resid) {

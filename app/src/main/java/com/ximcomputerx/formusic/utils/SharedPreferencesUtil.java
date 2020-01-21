@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 
 /**
  * @AUTHOR HACKER
@@ -25,7 +25,7 @@ public class SharedPreferencesUtil {
      */
     public static boolean setIntPreferences(String preName, int mode, String key,
                                             int value) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         boolean b = preferences.edit().putInt(key, value).commit();
         return b;
@@ -49,7 +49,7 @@ public class SharedPreferencesUtil {
      */
     public static int getIntPreferences(String preName, int mode, String key,
                                         int defaultValue) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         return preferences.getInt(key, defaultValue);
     }
@@ -82,7 +82,7 @@ public class SharedPreferencesUtil {
      */
     public static void setLongPreferences(String preName, int mode, String key,
                                           long value) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         preferences.edit().putLong(key, value).commit();
     }
@@ -105,7 +105,7 @@ public class SharedPreferencesUtil {
      */
     public static long getLongPreferences(String preName, int mode, String key,
                                           long defaultValue) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         return preferences.getLong(key, defaultValue);
     }
@@ -138,7 +138,7 @@ public class SharedPreferencesUtil {
      */
     public static void setBooleanPreferences(String preName, int mode,
                                              String key, boolean value) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         preferences.edit().putBoolean(key, value).commit();
     }
@@ -163,7 +163,7 @@ public class SharedPreferencesUtil {
      */
     public static boolean getBooleanPreferences(String preName, int mode,
                                                 String key, boolean defaultValue) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         return preferences.getBoolean(key, defaultValue);
     }
@@ -196,7 +196,7 @@ public class SharedPreferencesUtil {
      */
     public static void setFloatPreferences(String preName, int mode,
                                            String key, float value) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         preferences.edit().putFloat(key, value).commit();
     }
@@ -220,7 +220,7 @@ public class SharedPreferencesUtil {
      */
     public static float getFloatPreferences(String preName, int mode,
                                             String key, float defaultValue) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         return preferences.getFloat(key, defaultValue);
     }
@@ -255,7 +255,7 @@ public class SharedPreferencesUtil {
      */
     public static void setStringPreferences(String preName, int mode,
                                             String key, String value) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         preferences.edit().putString(key, value).commit();
     }
@@ -279,7 +279,7 @@ public class SharedPreferencesUtil {
      */
     public static String getStringPreferences(String preName, int mode,
                                               String key, String defaultValue) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         return preferences.getString(key, defaultValue);
     }
@@ -310,7 +310,7 @@ public class SharedPreferencesUtil {
      * @param mode
      */
     public static void clearPreferences(String preName, int mode) {
-        SharedPreferences preferences = MusicApplication.getInstance()
+        SharedPreferences preferences = ForMusicApplication.getInstance()
                 .getSharedPreferences(preName, mode);
         Editor editor = preferences.edit();
         editor.clear();

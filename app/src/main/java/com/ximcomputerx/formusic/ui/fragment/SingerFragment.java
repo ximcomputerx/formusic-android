@@ -114,6 +114,6 @@ public class SingerFragment extends BaseFragment implements SwipeRecyclerView.Lo
 
     @Override
     public void onLoadMore() {
-        initArtistData(false);
+        initArtistData(true);
     }
 }

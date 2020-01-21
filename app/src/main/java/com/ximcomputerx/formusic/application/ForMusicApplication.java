@@ -13,18 +13,18 @@ import org.litepal.LitePal;
 /**
  * @AUTHOR HACKER
  */
-public class MusicApplication extends Application {
-    private static MusicApplication instance;
+public class ForMusicApplication extends Application {
+    private static ForMusicApplication instance;
 
     private String token;
 
     private RefWatcher refWatcher;
 
-    public synchronized static MusicApplication getInstance() {
+    public synchronized static ForMusicApplication getInstance() {
         return instance;
     }
 
-    public MusicApplication() {
+    public ForMusicApplication() {
         super();
     }
 
@@ -50,7 +50,7 @@ public class MusicApplication extends Application {
     }
 
     public static RefWatcher getRefWatcher(Context context) {
-        MusicApplication zhanBaoApplication = (MusicApplication) context.getApplicationContext();
+        ForMusicApplication zhanBaoApplication = (ForMusicApplication) context.getApplicationContext();
         return zhanBaoApplication.refWatcher;
     }
 }

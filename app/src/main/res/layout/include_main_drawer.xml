@@ -9,16 +9,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="130dp"
-            android:paddingBottom="100dp"
-            android:textSize="30dp"
-            android:textStyle="bold">
+            android:layout_height="250dp">
 
-        </TextView>
+            <ImageView
+                android:id="@+id/iv_icon_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ImageView>
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"></ImageView>
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,14 +36,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/grey"></View>
+                android:background="@color/grey"
+                android:visibility="gone"></View>
 
             <LinearLayout
                 android:id="@+id/ll_setting"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -50,7 +58,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:text="功能设置"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_700_96p"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
 
@@ -59,7 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -69,10 +78,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center_vertical"
                     android:text="定时停止"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_700_96p"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
 
@@ -86,15 +95,38 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@mipmap/icon_test"></ImageView>
+                    android:background="@mipmap/drawer_download"></ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center_vertical"
                     android:text="扫码下载"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_700_96p"
+                    android:textSize="16sp"></TextView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_issues"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/drawer_issuse"></ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="问题反馈"
+                    android:textColor="@color/grey_700_96p"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
 
@@ -108,15 +140,15 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@mipmap/icon_test"></ImageView>
+                    android:background="@mipmap/drawer_about"></ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center_vertical"
-                    android:text="关于项目"
-                    android:textColor="@color/black"
+                    android:text="关于余音"
+                    android:textColor="@color/grey_700_96p"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
 
@@ -130,22 +162,23 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@mipmap/icon_test"></ImageView>
+                    android:background="@mipmap/drawer_exit"></ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center_vertical"
                     android:text="退出应用"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_700_96p"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/grey"></View>
+                android:background="@color/grey"
+                android:visibility="gone"></View>
 
         </LinearLayout>
     </LinearLayout>

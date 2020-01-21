@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.leakcanary.RefWatcher;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 import com.ximcomputerx.formusic.network.ApiWrapper;
 import com.ximcomputerx.formusic.utils.ActivityManagerUtil;
 
@@ -82,7 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         System.gc();
 
         ButterKnife.unbind(this);
-        RefWatcher refWatcher = MusicApplication.getRefWatcher(this);
+        RefWatcher refWatcher = ForMusicApplication.getRefWatcher(this);
         refWatcher.watch(this);
 
         super.onDestroy();
@@ -94,8 +94,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.finish();
     }
 
-    public MusicApplication getApp() {
-        return (MusicApplication) getApplication();
+    public ForMusicApplication getApp() {
+        return (ForMusicApplication) getApplication();
     }
 
     private WeakReference<Dialog> netDialog;

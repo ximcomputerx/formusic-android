@@ -6,7 +6,7 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.application.MusicApplication;
+import com.ximcomputerx.formusic.application.ForMusicApplication;
 
 /**
  * @CREATED HACKER
@@ -35,7 +35,7 @@ public class DoubleClickExitUtil {
         } else {
             isOnKeyBacking = true;
             if (mBackToast == null) {
-                mBackToast = Toast.makeText(MusicApplication.getInstance(), R.string.app_back_exit, Toast.LENGTH_LONG);
+                mBackToast = Toast.makeText(ForMusicApplication.getInstance(), R.string.app_back_exit, Toast.LENGTH_LONG);
             }
             mBackToast.show();
             mHandler.postDelayed(onBackTimeRunnable, 2000);
