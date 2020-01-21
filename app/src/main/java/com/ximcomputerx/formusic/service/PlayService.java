@@ -85,7 +85,7 @@ public class PlayService extends Service {
      */
     private void stop() {
         PlayManager.getInstance().stopPlayer();
-        NoticeManager.getInstance().cancelAll();
+        //NoticeManager.getInstance().cancelAll();
         // TODO
         //QuitTimer.get().stop();
     }

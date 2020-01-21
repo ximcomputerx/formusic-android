@@ -18,9 +18,6 @@ import androidx.core.app.NotificationCompat;
 
 import java.util.ArrayList;
 
-/**
- * Created by Neo on 16/1/25.
- */
 @SuppressLint("NewApi")
 public class NotifyUtil {
 

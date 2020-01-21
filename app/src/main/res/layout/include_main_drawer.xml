@@ -104,7 +104,7 @@
                     android:gravity="center_vertical"
                     android:text="扫码下载"
                     android:textColor="@color/grey_700_96p"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="14sp"></TextView>
             </LinearLayout>
 
 
@@ -127,7 +127,7 @@
                     android:gravity="center_vertical"
                     android:text="问题反馈"
                     android:textColor="@color/grey_700_96p"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="14sp"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -147,9 +147,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:gravity="center_vertical"
-                    android:text="关于余音"
+                    android:text="关于听音"
                     android:textColor="@color/grey_700_96p"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="14sp"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -171,7 +171,7 @@
                     android:gravity="center_vertical"
                     android:text="退出应用"
                     android:textColor="@color/grey_700_96p"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="14sp"></TextView>
             </LinearLayout>
 
             <View

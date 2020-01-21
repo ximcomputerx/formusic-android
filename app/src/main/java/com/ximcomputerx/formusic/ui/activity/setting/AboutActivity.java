@@ -62,7 +62,7 @@ public class AboutActivity extends BaseActivity {
                 //viewPager.setCurrentItem(1);
                 break;
             case R.id.ll_version:
-                //viewPager.setCurrentItem(1);
+
                 break;
         }
     }
