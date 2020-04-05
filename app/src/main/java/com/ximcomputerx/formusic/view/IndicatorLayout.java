@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.utils.ScreenUtils;
+import com.ximcomputerx.formusic.util.ScreenUtils;
 
 /**
  * 播放页Indicator

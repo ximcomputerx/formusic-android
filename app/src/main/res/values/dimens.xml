@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <dimen name="action_bar">55dp</dimen>
-    <dimen name="play_bar_height">57dp</dimen>
+    <dimen name="play_bar_height">50dp</dimen>
     <dimen name="text_size_common">16sp</dimen>
 
     <dimen name="activity_horizontal_margin">16dp</dimen>

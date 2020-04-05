@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.model.SingerInfo;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +106,8 @@ public class ListSingerAdapter extends RecyclerView.Adapter<ListSingerAdapter.Vi
             dataList = new ArrayList<>();
         }
         dataList.addAll(items);
-        notifyDataSetChanged();
+        //notifyDataSetChanged();
+        notifyItemRangeInserted(dataList.size() - items.size(), items.size());
         return items.size();
     }
 

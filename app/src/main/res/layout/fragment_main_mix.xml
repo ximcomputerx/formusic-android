@@ -31,19 +31,17 @@
             android:layout_height="40dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:nts_color="#ff0000"
-            app:nts_weight="3dp"
-            app:nts_size="15sp"
-            app:nts_factor="2.5"
-            app:nts_type="line"
-            app:nts_gravity="bottom"
-            app:nts_typeface="fonts/typeface.otf"
-            app:nts_corners_radius="1.5dp"
-            app:nts_animation_duration="300"
             app:nts_active_color="#ff0000"
+            app:nts_animation_duration="300"
+            app:nts_color="#ff0000"
+            app:nts_corners_radius="1.5dp"
+            app:nts_factor="2.5"
+            app:nts_gravity="bottom"
             app:nts_inactive_color="#000000"
-            >
-        </com.gigamole.navigationtabstrip.NavigationTabStrip>
+            app:nts_size="15sp"
+            app:nts_type="line"
+            app:nts_typeface="fonts/typeface.otf"
+            app:nts_weight="3dp"></com.gigamole.navigationtabstrip.NavigationTabStrip>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"

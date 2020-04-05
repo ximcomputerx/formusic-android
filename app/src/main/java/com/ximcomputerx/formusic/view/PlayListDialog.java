@@ -14,9 +14,10 @@ import com.ximcomputerx.formusic.config.Constant;
 import com.ximcomputerx.formusic.enums.PlayModeEnum;
 import com.ximcomputerx.formusic.event.EventId;
 import com.ximcomputerx.formusic.event.MessageEvent;
+import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.play.PlayManager;
 import com.ximcomputerx.formusic.ui.adapter.PlayListAdapter;
-import com.ximcomputerx.formusic.utils.SharedPreferencesUtil;
+import com.ximcomputerx.formusic.util.SharedPreferencesUtil;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -56,6 +57,13 @@ public class PlayListDialog extends BaseDialog {
                 PlayManager.getInstance().stopPlayer();
                 PlayManager.getInstance().setPlayPosition(position);
                 PlayManager.getInstance().playPause();
+
+                PlayManager.getInstance().getPlayMusic().setPlay(false);
+
+                MusicInfo musicInfo = (MusicInfo) data;
+                musicInfo.setPlay(true);
+                playListAdapter.notifyDataSetChanged();
+
             }
         });
         rv_playlist.smoothScrollToPosition(PlayManager.getInstance().getPlayPosition());
@@ -83,7 +91,7 @@ public class PlayListDialog extends BaseDialog {
     public void onEvent(MessageEvent messageEvent) {
         switch (messageEvent.getMessageId()) {
             case EventId.EVENT_ID_MUSIC_TIME:
-                playListAdapter.notifyDataSetChanged();
+                //playListAdapter.notifyDataSetChanged();
                 break;
         }
     }
@@ -93,15 +101,15 @@ public class PlayListDialog extends BaseDialog {
         switch (mode) {
             case LOOP:
                 mode = PlayModeEnum.SHUFFLE;
-                //ToastUtil.showShort(getContext(), getContext().getString(R.string.mode_shuffle));
+                //ToastUtil.showShortToast(getContext(), getContext().getString(R.string.mode_shuffle));
                 break;
             case SHUFFLE:
                 mode = PlayModeEnum.SINGLE;
-                //ToastUtil.showShort(getContext(), getContext().getString(R.string.mode_one));
+                //ToastUtil.showShortToast(getContext(), getContext().getString(R.string.mode_one));
                 break;
             case SINGLE:
                 mode = PlayModeEnum.LOOP;
-                //ToastUtil.showShort(getContext(), getContext().getString(R.string.mode_loop));
+                //ToastUtil.showShortToast(getContext(), getContext().getString(R.string.mode_loop));
                 break;
         }
         SharedPreferencesUtil.setIntPreferences(Constant.PREFERENCES, Constant.PLAY_MODE, mode.value());

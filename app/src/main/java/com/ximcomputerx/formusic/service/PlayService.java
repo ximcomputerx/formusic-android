@@ -12,7 +12,7 @@ import com.ximcomputerx.formusic.config.Actions;
 import com.ximcomputerx.formusic.notice.NoticeManager;
 import com.ximcomputerx.formusic.play.MediaSessionManager;
 import com.ximcomputerx.formusic.play.PlayManager;
-import com.ximcomputerx.formusic.utils.LogUtil;
+import com.ximcomputerx.formusic.util.LogUtil;
 
 /**
  * @CREATED HACKER

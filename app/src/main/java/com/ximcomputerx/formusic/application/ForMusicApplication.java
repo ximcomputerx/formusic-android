@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.ximcomputerx.formusic.service.PlayService;
@@ -15,8 +16,6 @@ import org.litepal.LitePal;
  */
 public class ForMusicApplication extends Application {
     private static ForMusicApplication instance;
-
-    private String token;
 
     private RefWatcher refWatcher;
 
@@ -32,13 +31,13 @@ public class ForMusicApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        // 数据库框架
         LitePal.initialize(this);
-
-        // leakcanary install
+        // 注册滑动
+        registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
+        // 内存泄漏
         refWatcher = LeakCanary.install(this);
-
-        // 创建服务
+        // 音乐服务
         Intent intent = new Intent(this, PlayService.class);
         startService(intent);
     }
@@ -53,4 +52,5 @@ public class ForMusicApplication extends Application {
         ForMusicApplication zhanBaoApplication = (ForMusicApplication) context.getApplicationContext();
         return zhanBaoApplication.refWatcher;
     }
+
 }

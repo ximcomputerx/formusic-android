@@ -6,8 +6,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_height="160dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -20,8 +20,8 @@
             android:visibility="visible">
 
             <RelativeLayout
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:layout_gravity="center_horizontal">
 
                 <ImageView
@@ -44,16 +44,16 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="50dp"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="加载中..."

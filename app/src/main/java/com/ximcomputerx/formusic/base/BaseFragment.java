@@ -75,7 +75,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public ForMusicApplication getApp() {
-        return (ForMusicApplication) ForMusicApplication.getInstance();
+        return ForMusicApplication.getInstance();
     }
 
     private WeakReference<Dialog> netDialog;
@@ -85,9 +85,9 @@ public abstract class BaseFragment extends Fragment {
             Dialog dialog = new Dialog(context, R.style.NormalDialog);
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.item_progress_dialog, null);
             dialog.setContentView(layout);
-            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCanceledOnTouchOutside(true);
             dialog.show();
-            netDialog = new WeakReference<Dialog>(dialog);
+            netDialog = new WeakReference<>(dialog);
         } else {
             if (!netDialog.get().isShowing()) {
                 netDialog.get().show();

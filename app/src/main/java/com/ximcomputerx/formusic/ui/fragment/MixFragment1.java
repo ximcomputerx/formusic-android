@@ -9,10 +9,10 @@ import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.base.BaseFragment;
 import com.ximcomputerx.formusic.model.MixInfo;
 import com.ximcomputerx.formusic.model.MixListInfo;
-import com.ximcomputerx.formusic.ui.activity.song.SongListActivity;
+import com.ximcomputerx.formusic.ui.activity.SongListActivity;
 import com.ximcomputerx.formusic.ui.adapter.ListMixAdapter;
 import com.ximcomputerx.formusic.ui.adapter.ListSongAdapter;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.ToastUtil;
 import com.ximcomputerx.formusic.view.CustomLoadMoreView;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 
@@ -69,7 +69,7 @@ public class MixFragment1 extends BaseFragment implements SwipeRecyclerView.Load
                     @Override
                     public void onError(Throwable e) {
                         closeNetDialog();
-                        ToastUtil.showToast(getResources().getString(R.string.load_error));
+                        ToastUtil.showShortToast(getResources().getString(R.string.load_error));
                     }
 
                     @Override
@@ -77,7 +77,6 @@ public class MixFragment1 extends BaseFragment implements SwipeRecyclerView.Load
                         if (mixListInfo != null && mixListInfo.getPlaylists() != null) {
                             if (pageIndex == 1) {
                                 listMixAdapter = new ListMixAdapter(context, mixListInfo.getPlaylists());
-                                listMixAdapter.setHasStableIds(true);
                                 rv_mix_1.setAdapter(listMixAdapter);
                                 listMixAdapter.setOnItemClickListener(new ListSongAdapter.OnItemClickListener() {
                                     @Override

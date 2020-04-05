@@ -24,7 +24,7 @@ public class MixFragment extends BaseFragment {
     @Bind(R.id.viewPager)
     protected ViewPager viewPager;
 
-    private String[] indicators = {"流行", "摇滚", "电子", "华语", "民谣", "怀旧"};
+    private String[] indicators = {"流行", "摇滚", "电子", "华语", "民谣", "怀旧", "欧美"};
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private FragmentMixAdapter listFragmentAdapter;
 
@@ -60,6 +60,7 @@ public class MixFragment extends BaseFragment {
         fragments.add(new MixFragment4());
         fragments.add(new MixFragment5());
         fragments.add(new MixFragment6());
+        fragments.add(new MixFragment7());
         listFragmentAdapter = new FragmentMixAdapter(getActivity().getSupportFragmentManager(), fragments, indicators);
         viewPager.setAdapter(listFragmentAdapter);
         psts_indicator.setViewPager(viewPager);

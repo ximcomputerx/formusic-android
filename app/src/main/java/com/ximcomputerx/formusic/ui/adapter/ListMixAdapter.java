@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.model.MixInfo;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +45,12 @@ public class ListMixAdapter extends RecyclerView.Adapter<ListMixAdapter.ViewHold
     @Override
     public void onBindViewHolder(ListMixAdapter.ViewHolder holder, int position) {
         // 解决图片加载闪动问题
-        if (!dataList.get(position).getCoverImgUrl().equals(holder.iv_image.getTag(R.id.iv_image))) {
+        //if (!dataList.get(position).getCoverImgUrl().equals(holder.iv_image.getTag(R.id.iv_image))) {
             // 加载图片
             GlideImageLoaderUtil.displayRoundImage(dataList.get(position).getCoverImgUrl(), holder.iv_image, R.mipmap.default_cover);
             // 给图片设置标记
-            holder.iv_image.setTag(R.id.iv_image, dataList.get(position).getCoverImgUrl());
-        }
+            //holder.iv_image.setTag(R.id.iv_image, dataList.get(position).getCoverImgUrl());
+        //}
         TextViewBinder.setTextView(holder.tv_update, dataList.get(position).getTrackCount());
         TextViewBinder.setTextView(holder.tv_name, dataList.get(position).getName());
     }
@@ -114,13 +114,9 @@ public class ListMixAdapter extends RecyclerView.Adapter<ListMixAdapter.ViewHold
             dataList = new ArrayList<>();
         }
         dataList.addAll(items);
-        notifyDataSetChanged();
+        //notifyDataSetChanged();
+        notifyItemRangeInserted(dataList.size() - items.size(), items.size());
         return items.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
 }

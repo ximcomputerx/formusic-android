@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.base.BaseFragment;
@@ -12,10 +13,10 @@ import com.ximcomputerx.formusic.config.Constant;
 import com.ximcomputerx.formusic.model.MixInfo;
 import com.ximcomputerx.formusic.model.RankInfo;
 import com.ximcomputerx.formusic.model.RankListInfo;
-import com.ximcomputerx.formusic.ui.activity.song.SongListActivity;
+import com.ximcomputerx.formusic.ui.activity.SongListActivity;
 import com.ximcomputerx.formusic.ui.adapter.ListRankAdapter;
 import com.ximcomputerx.formusic.ui.adapter.ListSongAdapter;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,9 @@ import rx.schedulers.Schedulers;
 /**
  * @AUTHOR HACKER
  */
-public class RankFragment extends BaseFragment {
+public class RankFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+    @Bind(R.id.srl_rank)
+    protected SwipeRefreshLayout srl_rank;
     @Bind(R.id.rv_1)
     protected RecyclerView rv_official;
     @Bind(R.id.rv_2)
@@ -55,6 +58,9 @@ public class RankFragment extends BaseFragment {
 
     @Override
     protected void initView(View contentView) {
+        srl_rank.setColorSchemeResources(R.color.app_basic);
+        srl_rank.setOnRefreshListener(this);
+
         GridLayoutManager layoutManager1 = new GridLayoutManager(getContext(), 3);
         rv_official.setLayoutManager(layoutManager1);
         GridLayoutManager layoutManager2 = new GridLayoutManager(getContext(), 3);
@@ -86,12 +92,13 @@ public class RankFragment extends BaseFragment {
                     @Override
                     public void onCompleted() {
                         closeNetDialog();
+                        srl_rank.setRefreshing(false);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         closeNetDialog();
-                        ToastUtil.showToast(getResources().getString(R.string.load_error));
+                        ToastUtil.showShortToast(getResources().getString(R.string.load_error));
                     }
 
                     @Override
@@ -106,6 +113,11 @@ public class RankFragment extends BaseFragment {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        initRandData();
     }
 
     private void initAdapter() {

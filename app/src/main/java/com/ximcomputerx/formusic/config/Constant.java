@@ -15,6 +15,7 @@ public class Constant {
     public static final String PLAY_LIST_SEARCH = "PLAY_LIST_SEARCH";
     public static final String PLAY_LIST_HISTORY = "PLAY_LIST_HISTORY";
     public static final String PLAY_LIST_LIKE = "PLAY_LIST_LIKE";
+    public static final String PLAY_LIST_RADIO = "PLAY_LIST_RADIO";
 
     public static final String SPLASH_URL = "SPLASH_URL";
     public static final String NIGHT_MODE = "NIGHT_MODE";
@@ -58,9 +59,8 @@ public class Constant {
     public static final int PLAY_RANDOM = 2;        //随机播放
 
     //public static final String URL_SERVICE = "http://192.168.0.102:3000";
-    //public static final String URL_SERVICE = "http://192.168.5.181:3000";
-    //public static final String URL_SERVICE = "http://47.240.71.185:3000";
     public static final String URL_SERVICE = "http://39.99.235.220:3000";
+    public static final String URL_SERVICE_UPDATE = "http://39.99.235.220:8080/version";
 
     //排行榜
     public static final String URL_SUB_RANK = "/toplist";
@@ -70,12 +70,18 @@ public class Constant {
     public static final String URL_SUB_SONGURL = "/song/url";
     public static final String URL_SUB_SONGLRC = "/lyric";
     public static final String URL_SUB_RECOMMEND = "/personalized";
-
     //搜索
     public static final String URL_SUB_SEARCH_HOST = "/search/hot/detail";
     public static final String URL_SUB_SEARCH_DETAIL = "/search";
-
     // 歌手
     public static final String URL_SUB_SINGER = "/top/artists";
     public static final String URL_SUB_SINGER_HOT = "/artist/top/song";
+    public static final String URL_SUB_VERSION = "/version";
+    // 电台
+    public static final String URL_SUB_RADIO = "/dj/radio/hot";
+    public static final String URL_SUB_RADIO_DETAIL = "/dj/program";
+
+    public static final int TASK_NOTIFY = 10000;
+
+    public static final int UPDATE_NOTIFY = 20000;
 }

@@ -11,11 +11,11 @@ import com.ximcomputerx.formusic.base.BaseFragment;
 import com.ximcomputerx.formusic.model.MixInfo;
 import com.ximcomputerx.formusic.model.RecommendIinfo;
 import com.ximcomputerx.formusic.model.RecommendListIinfo;
-import com.ximcomputerx.formusic.ui.activity.my.HistoryActivity;
-import com.ximcomputerx.formusic.ui.activity.my.LikeActivity;
-import com.ximcomputerx.formusic.ui.activity.song.SongListActivity;
+import com.ximcomputerx.formusic.ui.activity.HistoryActivity;
+import com.ximcomputerx.formusic.ui.activity.LikeActivity;
+import com.ximcomputerx.formusic.ui.activity.SongListActivity;
 import com.ximcomputerx.formusic.ui.adapter.ListRecommendAdapter;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.ToastUtil;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -84,7 +84,7 @@ public class MyFragment extends BaseFragment {
                     @Override
                     public void onError(Throwable e) {
                         closeNetDialog();
-                        ToastUtil.showToast(getResources().getString(R.string.load_error));
+                        ToastUtil.showShortToast(getResources().getString(R.string.load_error));
                     }
 
                     @Override

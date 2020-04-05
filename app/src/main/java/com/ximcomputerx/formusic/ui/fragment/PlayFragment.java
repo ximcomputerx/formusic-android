@@ -39,15 +39,15 @@ import com.ximcomputerx.formusic.model.LrcListInfo;
 import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.play.OnPlayerEventListener;
 import com.ximcomputerx.formusic.play.PlayManager;
-import com.ximcomputerx.formusic.ui.activity.main.MainActivity;
+import com.ximcomputerx.formusic.ui.activity.MainActivity;
 import com.ximcomputerx.formusic.ui.adapter.PlayPagerAdapter;
-import com.ximcomputerx.formusic.utils.FileUtils;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.LogUtil;
-import com.ximcomputerx.formusic.utils.ScreenUtils;
-import com.ximcomputerx.formusic.utils.SharedPreferencesUtil;
-import com.ximcomputerx.formusic.utils.SystemUtils;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.FileUtils;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.LogUtil;
+import com.ximcomputerx.formusic.util.ScreenUtils;
+import com.ximcomputerx.formusic.util.SharedPreferencesUtil;
+import com.ximcomputerx.formusic.util.SystemUtils;
+import com.ximcomputerx.formusic.util.ToastUtil;
 import com.ximcomputerx.formusic.view.IndicatorLayout;
 
 import org.litepal.LitePal;
@@ -134,8 +134,8 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     protected void initView(View contentView) {
         ImmersionBar.with(this).reset();
-        ImmersionBar.with(this).navigationBarColor(R.color.white)
-                .navigationBarDarkIcon(true).init();
+        ImmersionBar.with(this).navigationBarColor(R.color.black)
+                .navigationBarDarkIcon(false).init();
 
         EventBus.getDefault().register(this);
         ScreenUtils.init(getContext());
@@ -262,6 +262,8 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
         }
 
         tvTitle.setText(music.getTitle());
+        tvTitle.setSelected(true);
+
         tvArtist.setText(music.getArtist());
         sbProgress.setProgress((int) PlayManager.getInstance().getAudioPosition());
         sbProgress.setSecondaryProgress(0);
@@ -362,15 +364,15 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
         switch (mode) {
             case LOOP:
                 mode = PlayModeEnum.SHUFFLE;
-                ToastUtil.showShort(getContext(), getContext().getString(R.string.mode_shuffle));
+                ToastUtil.showShortToast(getContext().getString(R.string.mode_shuffle));
                 break;
             case SHUFFLE:
                 mode = PlayModeEnum.SINGLE;
-                ToastUtil.showShort(getContext(), getContext().getString(R.string.mode_one));
+                ToastUtil.showShortToast(getContext().getString(R.string.mode_one));
                 break;
             case SINGLE:
                 mode = PlayModeEnum.LOOP;
-                ToastUtil.showShort(getContext(), getContext().getString(R.string.mode_loop));
+                ToastUtil.showShortToast(getContext().getString(R.string.mode_loop));
                 break;
         }
         SharedPreferencesUtil.setIntPreferences(Constant.PREFERENCES, Constant.PLAY_MODE, mode.value());

@@ -4,15 +4,16 @@ import android.content.Intent;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.base.BaseFragment;
 import com.ximcomputerx.formusic.model.SingerInfo;
 import com.ximcomputerx.formusic.model.SingerListInfo;
-import com.ximcomputerx.formusic.ui.activity.singer.SingerSongListActivity;
+import com.ximcomputerx.formusic.ui.activity.SingerSongListActivity;
 import com.ximcomputerx.formusic.ui.adapter.ListSingerAdapter;
 import com.ximcomputerx.formusic.ui.adapter.ListSongAdapter;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.ToastUtil;
 import com.ximcomputerx.formusic.view.CustomLoadMoreView;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 
@@ -24,7 +25,9 @@ import rx.schedulers.Schedulers;
 /**
  * @AUTHOR HACKER
  */
-public class SingerFragment extends BaseFragment implements SwipeRecyclerView.LoadMoreListener {
+public class SingerFragment extends BaseFragment implements SwipeRecyclerView.LoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+    @Bind(R.id.srl_singer)
+    protected SwipeRefreshLayout srl_singer;
     @Bind({R.id.rv_singer})
     protected SwipeRecyclerView rv_singer;
 
@@ -41,6 +44,9 @@ public class SingerFragment extends BaseFragment implements SwipeRecyclerView.Lo
 
     @Override
     protected void initView(View contentView) {
+        srl_singer.setColorSchemeResources(R.color.app_basic);
+        srl_singer.setOnRefreshListener(this);
+
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         rv_singer.setLayoutManager(layoutManager);
         CustomLoadMoreView customLoadMoreView = new CustomLoadMoreView(context);
@@ -62,12 +68,13 @@ public class SingerFragment extends BaseFragment implements SwipeRecyclerView.Lo
                     @Override
                     public void onCompleted() {
                         closeNetDialog();
+                        srl_singer.setRefreshing(false);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         closeNetDialog();
-                        ToastUtil.showToast(getResources().getString(R.string.load_error));
+                        ToastUtil.showShortToast(getResources().getString(R.string.load_error));
                     }
 
                     @Override
@@ -110,6 +117,13 @@ public class SingerFragment extends BaseFragment implements SwipeRecyclerView.Lo
         Intent intent = new Intent(getContext(), SingerSongListActivity.class);
         intent.putExtra(SingerSongListActivity.SONGINFO, singerInfo);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        pageIndex = 1;
+        pageoffset = 0;
+        initArtistData(false);
     }
 
     @Override

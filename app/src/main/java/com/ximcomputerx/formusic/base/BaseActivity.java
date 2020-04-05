@@ -18,7 +18,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.application.ForMusicApplication;
 import com.ximcomputerx.formusic.network.ApiWrapper;
-import com.ximcomputerx.formusic.utils.ActivityManagerUtil;
+import com.ximcomputerx.formusic.util.ActivityManagerUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -35,8 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Context context;
 
     protected Intent intent;
-
-    protected boolean flag = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,6 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private WeakReference<Dialog> netDialog;
     private AVLoadingIndicatorView avl_load;
+
     public void showNetDialog() {
         if (netDialog == null || netDialog.get() == null) {
             Dialog dialog = new Dialog(context, R.style.NormalDialog);
@@ -107,9 +106,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             avl_load = layout.findViewById(R.id.avl_load);
             avl_load.show();
             dialog.setContentView(layout);
-            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCanceledOnTouchOutside(true);
             dialog.show();
-            netDialog = new WeakReference<Dialog>(dialog);
+            netDialog = new WeakReference<>(dialog);
         } else {
             if (!netDialog.get().isShowing()) {
                 avl_load.show();

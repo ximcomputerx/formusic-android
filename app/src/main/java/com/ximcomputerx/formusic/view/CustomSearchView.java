@@ -18,7 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.ToastUtil;
 
 /**
  * @CREATED HACKER
@@ -95,7 +95,7 @@ public class CustomSearchView extends LinearLayout implements View.OnClickListen
         if (!TextUtils.isEmpty(text)) {
             search = text;
         } else {
-            ToastUtil.showToast("请输入关键字");
+            ToastUtil.showShortToast("请输入关键字");
         }
         if (mListener != null) {
             mListener.onSearch(et_input.getText().toString());

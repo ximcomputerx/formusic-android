@@ -1,6 +1,9 @@
 package com.ximcomputerx.formusic.network;
 
 import com.ximcomputerx.formusic.config.Constant;
+import com.ximcomputerx.formusic.model.RadioDetailListInfo;
+import com.ximcomputerx.formusic.model.RadioListInfo;
+import com.ximcomputerx.formusic.model.RemoteReturnData;
 import com.ximcomputerx.formusic.model.SingerHotListInfo;
 import com.ximcomputerx.formusic.model.SingerListInfo;
 import com.ximcomputerx.formusic.model.LrcInfo;
@@ -13,6 +16,7 @@ import com.ximcomputerx.formusic.model.SearchListInfo;
 import com.ximcomputerx.formusic.model.SongListInfo;
 import com.ximcomputerx.formusic.model.SongUrlInfo;
 import com.ximcomputerx.formusic.model.SongUrlListInfo;
+import com.ximcomputerx.formusic.model.VersionInfo;
 
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -103,4 +107,14 @@ public interface ApiService {
      */
     @POST(Constant.URL_SUB_SINGER_HOT)
     Observable<SingerHotListInfo> singerHotList(@Query("id") String id);
+
+    /**
+     * 版本更新
+     * @param type
+     * @param name
+     * @param version
+     * @return
+     */
+    @POST(Constant.URL_SUB_VERSION)
+    Observable<RemoteReturnData<VersionInfo>> check(@Query("type") String type, @Query("name") String name, @Query("version") String version);
 }

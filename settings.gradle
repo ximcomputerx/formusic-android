@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='formusic'
+rootProject.name='formusic-android'

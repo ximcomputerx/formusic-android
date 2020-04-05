@@ -11,9 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
@@ -21,12 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.application.ForMusicApplication;
@@ -34,7 +27,7 @@ import com.ximcomputerx.formusic.config.Constant;
 import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.receiver.StatusBarReceiver;
 import com.ximcomputerx.formusic.service.PlayService;
-import com.ximcomputerx.formusic.ui.activity.main.MainActivity;
+import com.ximcomputerx.formusic.ui.activity.MainActivity;
 
 /**
  * 通知栏管理器
@@ -197,7 +190,7 @@ public class NoticeManager {
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        //ToastUtil.showShort(playService, "加载成功。。。。");
+                        //ToastUtil.showShortToast(playService, "加载成功。。。。");
                         remoteViews.setImageViewBitmap(R.id.iv_icon, resource);
                     }
                 });*/

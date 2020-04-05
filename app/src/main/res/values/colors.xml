@@ -3,7 +3,7 @@
     <!-- Common -->
     <color name="transparent">#00000000</color>
 
-    <color name="app_basic">#007ad7</color>
+    <color name="app_basic">#ff0000</color>
     <color name="app_white">#ffffff</color>
 
     <!-- navigation toolbar -->

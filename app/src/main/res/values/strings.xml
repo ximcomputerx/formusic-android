@@ -18,6 +18,7 @@
     <string name="rank_music">排行榜</string>
     <string name="list_music">歌单</string>
     <string name="singer_music">歌手</string>
+    <string name="radio_music">电台</string>
 
     <string name="play_time_start">00:00</string>
 

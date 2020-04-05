@@ -11,11 +11,12 @@ import com.ximcomputerx.formusic.config.Constant;
 import com.ximcomputerx.formusic.enums.PlayModeEnum;
 import com.ximcomputerx.formusic.event.EventId;
 import com.ximcomputerx.formusic.event.MessageEvent;
+import com.ximcomputerx.formusic.model.HistoryMusicInfo;
 import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.notice.NoticeManager;
 import com.ximcomputerx.formusic.receiver.NoisyAudioStreamReceiver;
-import com.ximcomputerx.formusic.utils.SharedPreferencesUtil;
-import com.ximcomputerx.formusic.utils.ToastUtil;
+import com.ximcomputerx.formusic.util.SharedPreferencesUtil;
+import com.ximcomputerx.formusic.util.ToastUtil;
 
 import org.litepal.LitePal;
 
@@ -203,7 +204,7 @@ public class PlayManager {
             MediaSessionManager.getInstance().updatePlaybackState();
         } catch (IOException e) {
             e.printStackTrace();
-            ToastUtil.showToast("当前歌曲无法播放");
+            ToastUtil.showShortToast("当前歌曲无法播放");
         }
     }
 
@@ -220,8 +221,31 @@ public class PlayManager {
         } else {
             play(getPlayPosition());
             // 发送事件播放历史事件
-            EventBus.getDefault().post(new MessageEvent(EventId.EVENT_ID_MUSIC_HISTORY, ""));
+            //EventBus.getDefault().post(new MessageEvent(EventId.EVENT_ID_MUSIC_HISTORY, ""));
+
+            MusicInfo musicInfo = PlayManager.getInstance().getPlayMusic();
+
+            HistoryMusicInfo historyMusicInfo = new HistoryMusicInfo();
+
+            toMusic(historyMusicInfo, musicInfo);
+
+            LitePal.deleteAll(HistoryMusicInfo.class, "songId=?", historyMusicInfo.getSongId() + "");
+            historyMusicInfo.save();
         }
+    }
+
+    private void toMusic(MusicInfo temp, MusicInfo musicInfo) {
+        temp.setType(musicInfo.getType());
+        temp.setSongId(musicInfo.getSongId());
+        temp.setCoverPath(musicInfo.getCoverPath());
+        temp.setTitle(musicInfo.getTitle());
+        temp.setArtist(musicInfo.getArtist());
+        temp.setAlbum(musicInfo.getAlbum());
+        temp.setAlbumId(musicInfo.getAlbumId());
+        temp.setDuration(musicInfo.getDuration());
+        temp.setPath(musicInfo.getPath());
+        temp.setFileName(musicInfo.getFileName());
+        temp.setFileSize(musicInfo.getFileSize());
     }
 
     /**

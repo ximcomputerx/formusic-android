@@ -13,8 +13,8 @@ import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.play.OnPlayerEventListener;
 import com.ximcomputerx.formusic.play.PlayManager;
-import com.ximcomputerx.formusic.ui.activity.main.MainActivity;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.ui.activity.MainActivity;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -80,12 +80,13 @@ public class ControlPanel implements View.OnClickListener, OnPlayerEventListener
         if (music == null) {
             return;
         }
-        GlideImageLoaderUtil.displayImage(music.getCoverPath(), ivPlayBarCover, R.mipmap.default_cover);
+        GlideImageLoaderUtil.displayImage(music.getCoverPath(), ivPlayBarCover, R.mipmap.play_page_default_cover);
         tvPlayBarTitle.setText(music.getTitle());
         tvPlayBarArtist.setText(music.getArtist());
         ivPlayBarPlay.setSelected(PlayManager.getInstance().isPlaying() || PlayManager.getInstance().isPreparing());
         mProgressBar.setMax((int) music.getDuration());
         mProgressBar.setProgress((int) PlayManager.getInstance().getAudioPosition());
+        tvPlayBarTitle.setSelected(true);
     }
 
     @Override

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.model.SearchInfo;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import java.util.ArrayList;
 import java.util.List;

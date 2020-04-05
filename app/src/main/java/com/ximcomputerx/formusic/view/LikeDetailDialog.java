@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.event.MessageEvent;
 import com.ximcomputerx.formusic.model.LikeMusicInfo;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import butterknife.Bind;
 
@@ -41,8 +41,9 @@ public class LikeDetailDialog extends BaseDialog {
         GlideImageLoaderUtil.displayRoundImage(likeMusicInfo.getCoverPath(), iv_pic, R.mipmap.default_cover);
         TextViewBinder.setTextView(tv_title, likeMusicInfo.getTitle());
         TextViewBinder.setTextView(tv_singer, likeMusicInfo.getArtist());
-        TextViewBinder.setTextView(tv_artist, likeMusicInfo.getTitle());
+        TextViewBinder.setTextView(tv_artist, likeMusicInfo.getArtist());
         TextViewBinder.setTextView(tv_albem, likeMusicInfo.getAlbum());
+        tv_title.setSelected(true);
     }
 
     /**

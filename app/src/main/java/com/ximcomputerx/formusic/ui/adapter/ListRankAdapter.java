@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.model.RankInfo;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import java.util.List;
 

@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:gravity="center_vertical"
-            android:text="关于余音"
+            android:text="关于听音"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />

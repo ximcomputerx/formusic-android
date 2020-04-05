@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.utils.ScreenUtils;
+import com.ximcomputerx.formusic.util.ScreenUtils;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 
 public class CustomLoadMoreView extends LinearLayout implements SwipeRecyclerView.LoadMoreView, View.OnClickListener {

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="170dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:gravity="center">
 
         <LinearLayout
             android:id="@+id/ll_child"
-            android:layout_width="120dp"
-            android:layout_height="140dp"
+            android:layout_width="115dp"
+            android:layout_height="160dp"
             android:orientation="vertical"
             android:visibility="visible">
 
             <RelativeLayout
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:layout_gravity="center_horizontal">
 
                 <ImageView
@@ -41,18 +41,19 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="30dp"
+                android:layout_width="115dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="1"
+                    android:maxLines="2"
+
                     android:text="加载中..."
                     android:textColor="@color/black"
                     android:textSize="12sp"

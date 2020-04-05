@@ -13,8 +13,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.ximcomputerx.formusic.R;
-import com.ximcomputerx.formusic.utils.CoverLoader;
-import com.ximcomputerx.formusic.utils.ImageUtils;
+import com.ximcomputerx.formusic.util.CoverLoader;
+import com.ximcomputerx.formusic.util.ImageUtils;
 
 /**
  * 专辑封面

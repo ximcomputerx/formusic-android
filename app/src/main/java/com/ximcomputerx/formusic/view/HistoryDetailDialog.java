@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.event.MessageEvent;
 import com.ximcomputerx.formusic.model.HistoryMusicInfo;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import butterknife.Bind;
 
@@ -41,8 +41,9 @@ public class HistoryDetailDialog extends BaseDialog {
         GlideImageLoaderUtil.displayRoundImage(historyMusicInfo.getCoverPath(), iv_pic, R.mipmap.default_cover);
         TextViewBinder.setTextView(tv_title, historyMusicInfo.getTitle());
         TextViewBinder.setTextView(tv_singer, historyMusicInfo.getArtist());
-        TextViewBinder.setTextView(tv_artist, historyMusicInfo.getTitle());
+        TextViewBinder.setTextView(tv_artist, historyMusicInfo.getArtist());
         TextViewBinder.setTextView(tv_albem, historyMusicInfo.getAlbum());
+        tv_title.setSelected(true);
     }
 
     /**

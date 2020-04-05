@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.event.MessageEvent;
 import com.ximcomputerx.formusic.model.SongInfo;
-import com.ximcomputerx.formusic.utils.GlideImageLoaderUtil;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import butterknife.Bind;
 
@@ -43,6 +43,7 @@ public class SongDetailDialog extends BaseDialog {
         TextViewBinder.setTextView(tv_singer, songInfo.getAr().get(0).getName());
         TextViewBinder.setTextView(tv_artist, songInfo.getAr().get(0).getName());
         TextViewBinder.setTextView(tv_albem, songInfo.getAl().getName());
+        tv_title.setSelected(true);
     }
 
     /**

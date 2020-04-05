@@ -7,5 +7,7 @@
     <com.yanzhenjie.recyclerview.SwipeRecyclerView
         android:id="@+id/rv_mix_5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.yanzhenjie.recyclerview.SwipeRecyclerView>
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"></com.yanzhenjie.recyclerview.SwipeRecyclerView>
 </LinearLayout>

@@ -45,7 +45,7 @@
                     android:layout_height="20dp"
                     android:ellipsize="end"
                     android:enabled="false"
-                    android:maxWidth="200dp"
+                    android:maxWidth="280dp"
                     android:singleLine="true"
                     android:text="歌曲"
                     android:textColor="@drawable/selector_playlist_item"
@@ -63,10 +63,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:enabled="false"
                         android:maxWidth="180dp"
                         android:singleLine="true"
                         android:text="歌曲"
-                        android:enabled="false"
                         android:textColor="@drawable/selector_playlist_item"
                         android:textSize="12sp" />
 
@@ -76,9 +76,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
+                        android:enabled="false"
                         android:gravity="center"
                         android:text="—"
-                        android:enabled="false"
                         android:textColor="@drawable/selector_playlist_item"
                         android:textSize="12sp"></TextView>
 
@@ -87,10 +87,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:enabled="false"
                         android:maxWidth="150dp"
                         android:singleLine="true"
                         android:text="歌曲"
-                        android:enabled="false"
                         android:textColor="@drawable/selector_playlist_item"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -102,7 +102,8 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_music_list_icon_more" />
+                android:src="@mipmap/ic_music_list_icon_more"
+                android:visibility="gone" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

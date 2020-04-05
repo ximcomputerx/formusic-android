@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.model.MusicInfo;
-import com.ximcomputerx.formusic.utils.TextViewBinder;
+import com.ximcomputerx.formusic.play.PlayManager;
+import com.ximcomputerx.formusic.util.TextViewBinder;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         if (dataList.get(position).isPlay()) {
             holder.tv_title.setEnabled(true);
             holder.tv_name.setEnabled(true);
@@ -48,6 +49,31 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.ViewHo
         }
         TextViewBinder.setTextView(holder.tv_title, dataList.get(position).getTitle());
         TextViewBinder.setTextView(holder.tv_name, dataList.get(position).getArtist());
+
+        holder.iv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dataList.get(position).isPlay()) {
+                    dataList.remove(position);
+                    dataList.get(position).setPlay(true);
+                    notifyDataSetChanged();
+
+                    PlayManager.getInstance().next();
+                    PlayManager.getInstance().getMusicList().remove(position);
+                } else {
+                    long songid = PlayManager.getInstance().getPlayMusic().getSongId();
+                    PlayManager.getInstance().getMusicList().remove(position);
+                    List<MusicInfo> musicInfos = PlayManager.getInstance().getMusicList();
+                    for (int i = 0; i < musicInfos.size(); i++) {
+                        if (songid == musicInfos.get(i).getSongId()) {
+                            PlayManager.getInstance().setPlayPosition(i);
+                        }
+                    }
+                    dataList = PlayManager.getInstance().getMusicList();
+                    notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Override
