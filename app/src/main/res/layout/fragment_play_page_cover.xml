@@ -22,7 +22,7 @@
             app:civ_border_width="5dp" />
     </LinearLayout>
 
-    <me.wcy.lrcview.LrcView
+    <com.ximcomputerx.formusic.util.lrcview.LrcView
         android:id="@+id/lrc_view_single"
         android:layout_width="match_parent"
         android:layout_height="30dp"

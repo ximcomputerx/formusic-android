@@ -31,6 +31,8 @@ import com.ximcomputerx.formusic.model.SongInfo;
 import com.ximcomputerx.formusic.model.SongListInfo;
 import com.ximcomputerx.formusic.model.SongUrlInfo;
 import com.ximcomputerx.formusic.model.SongUrlListInfo;
+import com.ximcomputerx.formusic.model.TrackIdInfo;
+import com.ximcomputerx.formusic.model.TrackListInfo;
 import com.ximcomputerx.formusic.play.PlayManager;
 import com.ximcomputerx.formusic.ui.adapter.ListSongAdapter;
 import com.ximcomputerx.formusic.util.CommonUtils;
@@ -104,7 +106,9 @@ public class SongListActivity extends BaseActivity {
 
     private SongListInfo songListInfo;
     private List<SongInfo> songInfos;
+    private List<TrackIdInfo> trackIdInfos;
     private String ids = "";
+    private String trackIds = "";
 
     private boolean addFlag;
 
@@ -315,9 +319,52 @@ public class SongListActivity extends BaseActivity {
                     public void onNext(SongListInfo<Object> songListInfo) {
 
                         if (songListInfo != null) {
-                            if (songListInfo.getPlaylist().getTracks() != null) {
+                            if (songListInfo.getPlaylist().getTrackIds() != null) {
                                 SongListActivity.this.songListInfo = songListInfo;
-                                songInfos = songListInfo.getPlaylist().getTracks();
+                                List<TrackIdInfo> trackIdInfos = songListInfo.getPlaylist().getTrackIds();
+
+                                if(trackIdInfos != null && trackIdInfos.size() > 0) {
+                                    for(int i = 0; i < trackIdInfos.size(); i++) {
+                                        if(i != trackIdInfos.size() - 1) {
+                                            trackIds = trackIds + trackIdInfos.get(i).getId() + ",";
+                                        } else {
+                                            trackIds = trackIds + trackIdInfos.get(i).getId();
+                                        }
+                                    }
+                                } else {
+                                    trackIds = "";
+                                }
+                                initSongListDetail();;
+                            }
+                        } else {
+
+                        }
+                    }
+                });
+    }
+
+    private void initSongListDetail() {
+        getApiWrapper(true).songDetail(trackIds)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<TrackListInfo<Object>>() {
+                    @Override
+                    public void onCompleted() {
+                        closeNetDialog();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        closeNetDialog();
+                        ToastUtil.showShortToast(getResources().getString(R.string.load_error));
+                    }
+
+                    @Override
+                    public void onNext(TrackListInfo<Object> trackListInfo) {
+
+                        if (trackListInfo != null) {
+                            if (trackListInfo.getSongs() != null) {
+                                songInfos = trackListInfo.getSongs();
 
                                 listSongAdapter = new ListSongAdapter(context, songInfos);
                                 rv_songlist.setAdapter(listSongAdapter);

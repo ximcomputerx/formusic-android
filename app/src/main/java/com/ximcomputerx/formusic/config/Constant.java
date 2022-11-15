@@ -27,24 +27,24 @@ public class Constant {
     public static final int RANK_TYPE_recommend = 2;
     public static final int RANK_TYPE_world = 3;
     public static final int RANK_TYPE_other = 4;
-    public static final String RANK_TYPE_official_1 = "云音乐飙升榜";
-    public static final String RANK_TYPE_official_2 = "云音乐新歌榜";
-    public static final String RANK_TYPE_official_3 = "网易原创歌曲榜";
-    public static final String RANK_TYPE_official_4 = "云音乐热歌榜";
+    public static final String RANK_TYPE_official_1 = "飙升榜";
+    public static final String RANK_TYPE_official_2 = "新歌榜";
+    public static final String RANK_TYPE_official_3 = "原创榜";
+    public static final String RANK_TYPE_official_4 = "热歌榜";
 
-    public static final String RANK_TYPE_recommend_1 = "云音乐说唱榜";
-    public static final String RANK_TYPE_recommend_6 = "云音乐古典音乐榜";
+    public static final String RANK_TYPE_recommend_1 = "网络热歌榜";
+    public static final String RANK_TYPE_recommend_6 = "BEAT排行榜";
     public static final String RANK_TYPE_recommend_2 = "云音乐电音榜";
-    public static final String RANK_TYPE_recommend_4 = "抖音排行榜";
-    public static final String RANK_TYPE_recommend_5 = "云音乐ACG音乐榜";
-    public static final String RANK_TYPE_recommend_3 = "云音乐欧美新歌榜";
+    public static final String RANK_TYPE_recommend_4 = "听歌识曲榜";
+    public static final String RANK_TYPE_recommend_5 = "KTV唛榜";
+    public static final String RANK_TYPE_recommend_3 = "潜力爆款榜";
 
-    public static final String RANK_TYPE_world_1 = "英国Q杂志中文版周榜";
+    public static final String RANK_TYPE_world_1 = "美国Billboard榜";
     public static final String RANK_TYPE_world_2 = "UK排行榜周榜";
-    public static final String RANK_TYPE_world_3 = "美国Billboard周榜";
-    public static final String RANK_TYPE_world_4 = "Beatport全球电子舞曲榜";
-    public static final String RANK_TYPE_world_5 = "iTunes榜";
-    public static final String RANK_TYPE_world_6 = "日本Oricon周榜";
+    public static final String RANK_TYPE_world_3 = "日本Oricon榜";
+    public static final String RANK_TYPE_world_4 = "法国 NRJ Vos Hits 周榜";
+    public static final String RANK_TYPE_world_5 = "Beatport全球电子舞曲榜";
+    public static final String RANK_TYPE_world_6 = "云音乐韩语榜";
 
     // 播放列表类型
     public static final int LIST_TYPE_ONLINE = 1;   //专辑播放列表
@@ -58,7 +58,7 @@ public class Constant {
     public static final int PLAY_SINGLE = 1;        //单曲循环
     public static final int PLAY_RANDOM = 2;        //随机播放
 
-    //public static final String URL_SERVICE = "http://192.168.0.102:3000";
+    //public static final String URL_SERVICE = "http://192.168.0.105:3000";
     public static final String URL_SERVICE = "http://39.99.235.220:3000";
     public static final String URL_SERVICE_UPDATE = "http://39.99.235.220:8080/version";
 
@@ -67,6 +67,8 @@ public class Constant {
     //歌单
     public static final String URL_SUB_MIX = "/top/playlist";
     public static final String URL_SUB_SONGLIST = "/playlist/detail";
+    public static final String URL_SUB_SONGDETAIL = "/song/detail";
+
     public static final String URL_SUB_SONGURL = "/song/url";
     public static final String URL_SUB_SONGLRC = "/lyric";
     public static final String URL_SUB_RECOMMEND = "/personalized";

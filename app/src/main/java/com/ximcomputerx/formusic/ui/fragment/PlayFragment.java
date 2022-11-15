@@ -48,6 +48,7 @@ import com.ximcomputerx.formusic.util.ScreenUtils;
 import com.ximcomputerx.formusic.util.SharedPreferencesUtil;
 import com.ximcomputerx.formusic.util.SystemUtils;
 import com.ximcomputerx.formusic.util.ToastUtil;
+import com.ximcomputerx.formusic.util.lrcview.LrcView;
 import com.ximcomputerx.formusic.view.IndicatorLayout;
 
 import org.litepal.LitePal;
@@ -61,7 +62,6 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
-import me.wcy.lrcview.LrcView;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -274,6 +274,13 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
         setBackground(music);
         setCoverAndBg(music);
         setLrc(music);
+        if(mLrcViewSingle.hasLrc()) {
+            mLrcViewSingle.computeScroll();
+        }
+        if(mLrcViewFull.hasLrc()) {
+            mLrcViewFull.computeScroll();
+        }
+        mLrcViewFull.loadLrc("");
         if (PlayManager.getInstance().isPlaying() || PlayManager.getInstance().isPreparing()) {
             ivPlay.setSelected(true);
             civ_image.startAnimation(rotateAnimation);
@@ -508,7 +515,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     @Override
-    public boolean onPlayClick(long time) {
+    public boolean onPlayClick(LrcView view, long time) {
         if (PlayManager.getInstance().isPlaying() || PlayManager.getInstance().isPausing()) {
             PlayManager.getInstance().seekTo((int) time);
             if (PlayManager.getInstance().isPausing()) {
@@ -586,6 +593,8 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
 
                             if (lrcListInfo != null) {
                                 String lrc = lrcListInfo.getLrc().getLyric();
+                                mLrcViewSingle.loadLrc("");
+                                mLrcViewFull.loadLrc("");
                                 mLrcViewSingle.loadLrc(lrc);
                                 mLrcViewFull.loadLrc(lrc);
                             } else {

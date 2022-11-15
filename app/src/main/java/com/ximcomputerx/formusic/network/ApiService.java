@@ -16,6 +16,7 @@ import com.ximcomputerx.formusic.model.SearchListInfo;
 import com.ximcomputerx.formusic.model.SongListInfo;
 import com.ximcomputerx.formusic.model.SongUrlInfo;
 import com.ximcomputerx.formusic.model.SongUrlListInfo;
+import com.ximcomputerx.formusic.model.TrackListInfo;
 import com.ximcomputerx.formusic.model.VersionInfo;
 
 import retrofit2.http.POST;
@@ -51,6 +52,14 @@ public interface ApiService {
      */
     @POST(Constant.URL_SUB_SONGLIST)
     Observable<SongListInfo<Object>> songList(@Query("id") String id);
+
+    /**
+     * 获取歌单详情
+     * @param id
+     * @return
+     */
+    @POST(Constant.URL_SUB_SONGDETAIL)
+    Observable<TrackListInfo<Object>> songDetail(@Query("ids") String id);
 
     /**
      * 获取歌曲地址

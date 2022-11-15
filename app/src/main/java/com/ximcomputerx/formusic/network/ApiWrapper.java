@@ -16,6 +16,7 @@ import com.ximcomputerx.formusic.model.SearchListInfo;
 import com.ximcomputerx.formusic.model.SongListInfo;
 import com.ximcomputerx.formusic.model.SongUrlInfo;
 import com.ximcomputerx.formusic.model.SongUrlListInfo;
+import com.ximcomputerx.formusic.model.TrackListInfo;
 import com.ximcomputerx.formusic.model.VersionInfo;
 
 import retrofit2.http.POST;
@@ -64,6 +65,15 @@ public class ApiWrapper extends RetrofitHelper {
      */
     public Observable<SongListInfo<Object>> songList(String id) {
         return getApiService().songList(id);
+    }
+
+    /**
+     * 获取歌单详情
+     * @param ids
+     * @return
+     */
+    public Observable<TrackListInfo<Object>> songDetail(String ids) {
+        return getApiService().songDetail(ids);
     }
 
     /**

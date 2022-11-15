@@ -54,6 +54,7 @@ public class RetrofitHelper {
                             .addHeader("Accept-Encoding", "gzip")
                             .addHeader("Accept", "application/json")
                             .addHeader("Content-Type", "application/json; charset=utf-8")
+                            .header("Cookie", "MUSIC_A=bf8bfeabb1aa84f9c8c3906c04a04fb864322804c83f5d607e91a04eae463c9436bd1a17ec353cf7b9ad24053d3ebd172d3c8caa69843f6a993166e004087dd3de8308e20a27a31186cc75b03239d9ea28a583cf45622fcb08b0baa99986c484807e650dd04abd3fb8130b7ae43fcc5b; __csrf=1d2b8f525128dc972a975db6de034f0f")
                             .method(originalRequest.method(), originalRequest.body());
                     // requestBuilder.addHeader("Authorization", "");
                     Request request = requestBuilder.build();

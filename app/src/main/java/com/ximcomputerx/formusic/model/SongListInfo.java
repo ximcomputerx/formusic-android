@@ -45,14 +45,23 @@ public class SongListInfo<DataType> implements Serializable {
     }
 
     public class Playlist implements Serializable {
-        private List<SongInfo> tracks;
+        /*private List<SongInfo> trackIds;
 
-        public List<SongInfo> getTracks() {
-            return tracks;
+        public List<SongInfo> getTrackIds() {
+            return trackIds;
         }
 
-        public void setTracks(List<SongInfo> tracks) {
-            this.tracks = tracks;
+        public void setTrackIds(List<SongInfo> trackIds) {
+            this.trackIds = trackIds;
+        }*/
+        private List<TrackIdInfo> trackIds;
+
+        public List<TrackIdInfo> getTrackIds() {
+            return trackIds;
+        }
+
+        public void setTrackIds(List<TrackIdInfo> trackIds) {
+            this.trackIds = trackIds;
         }
     }
 }

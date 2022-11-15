@@ -32,4 +32,10 @@
     <color name="grey_900_96p">#F5212121</color>
 
     <color name="tabBackground">#777D7D7D</color>
+
+    <color name="lrc_normal_text_color">#9E9E9E</color>
+    <color name="lrc_current_text_color">#FF4081</color>
+    <color name="lrc_timeline_text_color">#F8BBD0</color>
+    <color name="lrc_timeline_color">#809E9E9E</color>
+    <color name="lrc_time_text_color">#809E9E9E</color>
 </resources>
