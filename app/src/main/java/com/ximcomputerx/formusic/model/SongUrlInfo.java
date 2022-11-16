@@ -29,6 +29,7 @@ public class SongUrlInfo implements Serializable {
     private String size;
     private String type;
     private String url;
+    private int fee;
 
     public String getId() {
         return id;
@@ -76,5 +77,13 @@ public class SongUrlInfo implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getFee() {
+        return fee;
+    }
+
+    public void setFee(int fee) {
+        this.fee = fee;
     }
 }

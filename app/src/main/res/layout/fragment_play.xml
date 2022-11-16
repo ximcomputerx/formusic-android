@@ -51,6 +51,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:ellipsize="marquee"
+                    android:textStyle="bold"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:visibility="visible"/>
 
@@ -62,7 +63,7 @@
                     android:singleLine="true"
                     android:text="无作者"
                     android:textColor="@color/grey"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <ImageView

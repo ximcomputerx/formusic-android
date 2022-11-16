@@ -131,6 +131,7 @@ public class HistoryActivity extends BaseActivity {
             musicInfo.setArtist(historyMusicInfos.get(i).getArtist());
             musicInfo.setCoverPath(historyMusicInfos.get(i).getCoverPath());
             musicInfo.setPath(historyMusicInfos.get(i).getPath());
+            musicInfo.setFee(historyMusicInfos.get(i).getFee());
             musicInfos.add(musicInfo);
         }
 

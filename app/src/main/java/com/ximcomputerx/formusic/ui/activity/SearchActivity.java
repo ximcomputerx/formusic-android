@@ -1,5 +1,6 @@
 package com.ximcomputerx.formusic.ui.activity;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -101,6 +102,9 @@ public class SearchActivity extends BaseActivity implements SwipeRecyclerView.Lo
                 finish();
                 break;
             case R.id.iv_search:
+                if(TextUtils.isEmpty(tv_list_music.getText().toString().trim())) {
+                    return;
+                }
                 iniSerchDetailData(tv_list_music.getText().toString().trim());
                 ll_hot.setVisibility(View.GONE);
                 ll_search.setVisibility(View.VISIBLE);
@@ -292,8 +296,8 @@ public class SearchActivity extends BaseActivity implements SwipeRecyclerView.Lo
                                 musicInfo.setArtist(searchInfos.get(i).getArtists().get(0).getName());
                                 musicInfo.setCoverPath(searchInfos.get(i).getArtists().get(0).getImg1v1Url());
                                 musicInfo.setAlbum(searchInfos.get(i).getAlbum().getName());
-                                String path = "https://music.163.com/song/media/outer/url?id=" + Long.parseLong(searchInfos.get(i).getId()) + ".mp3";
-                                musicInfo.setPath(path);
+                                //String path = "https://music.163.com/song/media/outer/url?id=" + Long.parseLong(searchInfos.get(i).getId()) + ".mp3";
+                                musicInfo.setPath(searchInfos.get(i).getUrl());
                                 //musicInfo.setPath(songInfos.get(i).getUrl());
                                 musicInfos.add(musicInfo);
                                 //}

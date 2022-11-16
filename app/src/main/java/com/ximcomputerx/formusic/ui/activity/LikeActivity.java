@@ -128,6 +128,7 @@ public class LikeActivity extends BaseActivity {
             musicInfo.setArtist(likeMusicInfos.get(i).getArtist());
             musicInfo.setCoverPath(likeMusicInfos.get(i).getCoverPath());
             musicInfo.setPath(likeMusicInfos.get(i).getPath());
+            musicInfo.setFee(likeMusicInfos.get(i).getFee());
             musicInfos.add(musicInfo);
         }
 

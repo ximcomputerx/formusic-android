@@ -391,6 +391,7 @@ public class SingerSongListActivity extends BaseActivity {
                                     if (songInfo.getId().equals(songUrlInfo.getId())) {
                                         songInfo.setUrl(songUrlInfo.getUrl());
                                         songInfo.setSize(songUrlInfo.getSize());
+                                        songInfo.setFee(songUrlInfo.getFee());
                                     }
                                 }
                             }
@@ -405,9 +406,10 @@ public class SingerSongListActivity extends BaseActivity {
                                 musicInfo.setArtist(songInfos.get(i).getAr().get(0).getName());
                                 musicInfo.setCoverPath(songInfos.get(i).getAl().getPicUrl());
                                 musicInfo.setAlbum(songInfos.get(i).getAl().getName());
-                                String path = "https://music.163.com/song/media/outer/url?id=" + Long.parseLong(songInfos.get(i).getId()) + ".mp3";
-                                musicInfo.setPath(path);
-                                //musicInfo.setPath(songInfos.get(i).getUrl());
+                                //String path = "https://music.163.com/song/media/outer/url?id=" + Long.parseLong(songInfos.get(i).getId()) + ".mp3";
+                                //musicInfo.setPath(path);
+                                musicInfo.setPath(songInfos.get(i).getUrl());
+                                musicInfo.setFee(songInfos.get(i).getFee());
                                 musicInfos.add(musicInfo);
                                 //}
                             }

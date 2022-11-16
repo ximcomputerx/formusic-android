@@ -118,6 +118,7 @@ public class SongInfo implements Serializable {
     private List<Ar> ar;
     private String url;
     private String size;
+    private int fee;
 
     public SongInfo(String id, String name, String url) {
         this.id = id;
@@ -174,5 +175,13 @@ public class SongInfo implements Serializable {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public int getFee() {
+        return fee;
+    }
+
+    public void setFee(int fee) {
+        this.fee = fee;
     }
 }

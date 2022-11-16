@@ -82,6 +82,7 @@ public class Constant {
     // 电台
     public static final String URL_SUB_RADIO = "/dj/radio/hot";
     public static final String URL_SUB_RADIO_DETAIL = "/dj/program";
+    public static final String URL_DOWNLOAD= "/song/download/url";
 
     public static final int TASK_NOTIFY = 10000;
 

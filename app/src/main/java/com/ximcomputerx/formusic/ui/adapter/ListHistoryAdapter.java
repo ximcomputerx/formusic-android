@@ -49,6 +49,7 @@ public class ListHistoryAdapter extends RecyclerView.Adapter<ListHistoryAdapter.
 
     @Override
     public void onBindViewHolder(ListHistoryAdapter.ViewHolder holder, final int position) {
+        holder.iv_vip.setVisibility(View.INVISIBLE);
         TextViewBinder.setTextView(holder.tv_number, (position + 1) + "");
         TextViewBinder.setTextView(holder.tv_title, dataList.get(position).getTitle());
         TextViewBinder.setTextView(holder.tv_artist, dataList.get(position).getArtist());
@@ -78,6 +79,10 @@ public class ListHistoryAdapter extends RecyclerView.Adapter<ListHistoryAdapter.
                 showDetailDialog(dataList.get(position));
             }
         });
+
+        if (dataList.get(position).getFee() == 1) {
+            holder.iv_vip.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -100,6 +105,8 @@ public class ListHistoryAdapter extends RecyclerView.Adapter<ListHistoryAdapter.
         protected TextView tv_line;
         @Bind(R.id.pb_progress_bar)
         protected ProgressBar pb_progress_bar;
+        @Bind(R.id.iv_vip)
+        protected ImageView iv_vip;
 
         public ViewHolder(View view) {
             super(view);

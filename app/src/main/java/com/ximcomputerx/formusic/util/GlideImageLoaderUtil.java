@@ -76,6 +76,21 @@ public class GlideImageLoaderUtil {
                 .into(imageView);
     }
 
+    public static void displayRoundImage(String path, ImageView imageView, int resourceId, int dp) {
+        Glide.with(ForMusicApplication.getInstance().getApplicationContext())
+                .load(path)
+                //.dontAnimate()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .thumbnail(Glide.with(ForMusicApplication.getInstance().getApplicationContext()).load(resourceId)
+                        .transform(new CenterCrop(), new GlideRoundTransform(ForMusicApplication.getInstance().getApplicationContext(), dp)))
+                .transform(new CenterCrop(), new GlideRoundTransform(ForMusicApplication.getInstance().getApplicationContext(), dp))
+                //.placeholder(resourceId)
+                //.error(resourceId)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .skipMemoryCache(true)
+                .into(imageView);
+    }
+
     public static void displayRoundImage(Integer resource, ImageView imageView, int resourceId) {
         Glide.with(ForMusicApplication.getInstance().getApplicationContext())
                 .load(resourceId)

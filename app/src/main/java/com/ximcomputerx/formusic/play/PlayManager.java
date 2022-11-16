@@ -246,6 +246,7 @@ public class PlayManager {
         temp.setPath(musicInfo.getPath());
         temp.setFileName(musicInfo.getFileName());
         temp.setFileSize(musicInfo.getFileSize());
+        temp.setFee(musicInfo.getFee());
     }
 
     /**

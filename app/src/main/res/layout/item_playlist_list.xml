@@ -57,6 +57,15 @@
                     android:text="歌曲"
                     android:textColor="@drawable/selector_playlist_item"
                     android:textSize="11sp" />
+
+                <ImageView
+                    android:id="@+id/iv_vip"
+                    android:layout_gravity="center"
+                    android:layout_width="18dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="invisible"
+                    android:background="@mipmap/ic_vip"></ImageView>
             </LinearLayout>
 
             <include

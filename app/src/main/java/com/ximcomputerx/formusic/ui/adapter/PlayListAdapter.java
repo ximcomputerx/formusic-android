@@ -36,6 +36,7 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.iv_vip.setVisibility(View.INVISIBLE);
         if (dataList.get(position).isPlay()) {
             holder.tv_title.setEnabled(true);
             holder.tv_name.setEnabled(true);
@@ -74,6 +75,10 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.ViewHo
                 }
             }
         });
+
+        if (dataList.get(position).getFee() == 1) {
+            holder.iv_vip.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -92,6 +97,8 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.ViewHo
         protected ImageView iv_delete;
         @Bind(R.id.pb_progress_bar)
         protected ProgressBar pb_progress_bar;
+        @Bind(R.id.iv_vip)
+        protected ImageView iv_vip;
 
         public ViewHolder(View view) {
             super(view);

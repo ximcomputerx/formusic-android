@@ -103,6 +103,7 @@
                 android:id="@+id/iv_like"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:padding="5dp"
                 android:layout_marginRight="40dp"
                 android:src="@mipmap/song_group_page_collect_n" />
 
@@ -111,7 +112,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="40dp"
-                android:padding="2dp"
+                android:padding="3dp"
                 android:src="@mipmap/song_group_page_download_n" />
 
             <ImageView

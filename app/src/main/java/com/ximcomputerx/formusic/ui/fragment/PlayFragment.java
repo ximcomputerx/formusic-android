@@ -26,6 +26,10 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.gyf.immersionbar.ImmersionBar;
+import com.liulishuo.filedownloader.BaseDownloadTask;
+import com.liulishuo.filedownloader.FileDownloadListener;
+import com.liulishuo.filedownloader.FileDownloader;
+import com.liulishuo.filedownloader.util.FileDownloadUtils;
 import com.ximcomputerx.formusic.R;
 import com.ximcomputerx.formusic.base.BaseFragment;
 import com.ximcomputerx.formusic.config.Actions;
@@ -41,6 +45,7 @@ import com.ximcomputerx.formusic.play.OnPlayerEventListener;
 import com.ximcomputerx.formusic.play.PlayManager;
 import com.ximcomputerx.formusic.ui.activity.MainActivity;
 import com.ximcomputerx.formusic.ui.adapter.PlayPagerAdapter;
+import com.ximcomputerx.formusic.util.FileUtil;
 import com.ximcomputerx.formusic.util.FileUtils;
 import com.ximcomputerx.formusic.util.GlideImageLoaderUtil;
 import com.ximcomputerx.formusic.util.LogUtil;
@@ -55,6 +60,7 @@ import org.litepal.LitePal;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -113,6 +119,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
     private List<View> mViewPagerContent;
     private int mLastProgress;
     private boolean isDraggingProgress;
+    private String lrc;
 
     private Animation rotateAnimation;
 
@@ -162,7 +169,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
                 //.error(Color.GRAY)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .transform(new CenterCrop())
-                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3)))
+                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 5)))
                 .into(ivPlayingBg);
     }
 
@@ -189,6 +196,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
 
     /**
      * EVENBUS RECIVER
+     *
      * @param messageEvent
      */
     public void onEvent(MessageEvent messageEvent) {
@@ -274,10 +282,10 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
         setBackground(music);
         setCoverAndBg(music);
         setLrc(music);
-        if(mLrcViewSingle.hasLrc()) {
+        if (mLrcViewSingle.hasLrc()) {
             mLrcViewSingle.computeScroll();
         }
-        if(mLrcViewFull.hasLrc()) {
+        if (mLrcViewFull.hasLrc()) {
             mLrcViewFull.computeScroll();
         }
         mLrcViewFull.loadLrc("");
@@ -337,6 +345,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
                 }
                 break;
             case R.id.iv_download:
+                download();
                 break;
         }
     }
@@ -353,6 +362,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
         temp.setPath(musicInfo.getPath());
         temp.setFileName(musicInfo.getFileName());
         temp.setFileSize(musicInfo.getFileSize());
+        temp.setFee(musicInfo.getFee());
     }
 
     private void onBackPressed() {
@@ -401,6 +411,7 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
 
     /**
      * 设置封面
+     *
      * @param music
      */
     private void setCoverAndBg(MusicInfo music) {
@@ -592,7 +603,8 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
                         public void onNext(LrcListInfo<LrcInfo> lrcListInfo) {
 
                             if (lrcListInfo != null) {
-                                String lrc = lrcListInfo.getLrc().getLyric();
+                                lrc = "";
+                                lrc = lrcListInfo.getLrc().getLyric();
                                 mLrcViewSingle.loadLrc("");
                                 mLrcViewFull.loadLrc("");
                                 mLrcViewSingle.loadLrc(lrc);
@@ -618,5 +630,65 @@ public class PlayFragment extends BaseFragment implements ViewPager.OnPageChange
     private void setLrcLabel(String label) {
         mLrcViewSingle.setLabel(label);
         mLrcViewFull.setLabel(label);
+    }
+
+    private void download() {
+        MusicInfo musicInfoTemp = PlayManager.getInstance().getPlayMusic();
+        if (musicInfoTemp != null && !TextUtils.isEmpty(musicInfoTemp.getPath())) {
+            String[] name = musicInfoTemp.getPath().split("/");
+            FileDownloader.getImpl().create(musicInfoTemp.getPath())
+                    .setPath(FileUtils.getMusicDir(), true)
+                    .setCallbackProgressTimes(300)
+                    .setMinIntervalUpdateSpeed(400)
+                    .setListener(new FileDownloadListener() {
+                        @Override
+                        protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                            ToastUtil.showShortToast("开始下载");
+                        }
+
+                        @Override
+                        protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
+                        }
+
+                        @Override
+                        protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                        }
+
+                        @Override
+                        protected void blockComplete(BaseDownloadTask task) {
+                        }
+
+                        @Override
+                        protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
+                        }
+
+                        @Override
+                        protected void completed(BaseDownloadTask task) {
+                            ToastUtil.showLongToast("下载完成" + "/ForMusic/Music/" + musicInfoTemp.getTitle() + "-" + musicInfoTemp.getSongId() + ".mp3");
+                            if (name.length > 0) {
+                                String tempName = name[name.length - 1];
+                                FileUtil.copyFile(new File(FileUtils.getMusicDir() + tempName), new File(FileUtils.getMusicDir() + musicInfoTemp.getTitle() + "-" + musicInfoTemp.getSongId() + ".mp3"));
+                                FileUtil.deleteFile(new File(FileUtils.getMusicDir() + tempName));
+                            }
+                            if (mLrcViewSingle.hasLrc()) {
+                                FileUtil.writeText(new File(FileUtils.getLrcDir() + musicInfoTemp.getTitle() + "-" + musicInfoTemp.getSongId() + ".lrc"), lrc);
+                            }
+                        }
+
+                        @Override
+                        protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                        }
+
+                        @Override
+                        protected void error(BaseDownloadTask task, Throwable e) {
+                            ToastUtil.showShortToast("下载错误");
+                        }
+
+                        @Override
+                        protected void warn(BaseDownloadTask task) {
+                        }
+                    }).start();
+        }
+
     }
 }

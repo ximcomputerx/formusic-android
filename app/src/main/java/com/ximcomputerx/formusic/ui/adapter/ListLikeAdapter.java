@@ -50,6 +50,7 @@ public class ListLikeAdapter extends RecyclerView.Adapter<ListLikeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ListLikeAdapter.ViewHolder holder, final int position) {
+        holder.iv_vip.setVisibility(View.INVISIBLE);
         TextViewBinder.setTextView(holder.tv_number, (position + 1) + "");
         TextViewBinder.setTextView(holder.tv_title, dataList.get(position).getTitle());
         TextViewBinder.setTextView(holder.tv_artist, dataList.get(position).getArtist());
@@ -79,6 +80,11 @@ public class ListLikeAdapter extends RecyclerView.Adapter<ListLikeAdapter.ViewHo
                 showDetailDialog(dataList.get(position));
             }
         });
+
+        if (dataList.get(position).getFee() == 1) {
+            holder.iv_vip.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -101,6 +107,8 @@ public class ListLikeAdapter extends RecyclerView.Adapter<ListLikeAdapter.ViewHo
         protected ProgressBar pb_progress_bar;
         @Bind(R.id.tv_line)
         protected TextView tv_line;
+        @Bind(R.id.iv_vip)
+        protected ImageView iv_vip;
 
         public ViewHolder(View view) {
             super(view);

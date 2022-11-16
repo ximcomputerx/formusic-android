@@ -49,6 +49,7 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ListSongAdapter.ViewHolder holder, final int position) {
+        holder.iv_vip.setVisibility(View.INVISIBLE);
         TextViewBinder.setTextView(holder.tv_number, (position + 1) + "");
         TextViewBinder.setTextView(holder.tv_title, dataList.get(position).getName());
         TextViewBinder.setTextView(holder.tv_artist, dataList.get(position).getAr().get(0).getName());
@@ -76,6 +77,9 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
                 holder.tv_line.setTextColor(context.getResources().getColor(R.color.black));
                 holder.pb_progress_bar.setVisibility(View.GONE);
             }
+        }
+        if (dataList.get(position).getFee() == 1) {
+            holder.iv_vip.setVisibility(View.VISIBLE);
         }
     }
 
@@ -114,6 +118,8 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
         protected ImageView iv_more;
         @Bind(R.id.pb_progress_bar)
         protected ProgressBar pb_progress_bar;
+        @Bind(R.id.iv_vip)
+        protected ImageView iv_vip;
 
         public ViewHolder(View view) {
             super(view);

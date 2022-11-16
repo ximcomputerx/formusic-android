@@ -33,7 +33,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
+                            android:paddingLeft="18dp"
                             android:text="官方榜"
                             android:textColor="@color/black"
                             android:textSize="18sp"
@@ -57,7 +57,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
+                            android:paddingLeft="18dp"
                             android:text="推荐榜"
                             android:textColor="@color/black"
                             android:textSize="18sp"
@@ -81,7 +81,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
+                            android:paddingLeft="18dp"
                             android:text="全球榜"
                             android:textColor="@color/black"
                             android:textSize="18sp"
@@ -106,7 +106,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
+                            android:paddingLeft="18dp"
                             android:text="其他榜"
                             android:textColor="@color/black"
                             android:textSize="18sp"

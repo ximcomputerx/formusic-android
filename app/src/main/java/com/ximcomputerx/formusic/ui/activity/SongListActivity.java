@@ -161,14 +161,14 @@ public class SongListActivity extends BaseActivity {
      */
     private void setPicture() {
         //GlideImageLoaderUtil.displayImage(mixInfo.getCoverImgUrl(), iv_one_photo);
-        GlideImageLoaderUtil.displayRoundImage(mixInfo.getCoverImgUrl(), iv_one_photo, R.mipmap.default_cover);
+        GlideImageLoaderUtil.displayRoundImage(mixInfo.getCoverImgUrl(), iv_one_photo, R.mipmap.default_cover, 10);
         // "14":模糊度；"3":图片缩放3倍后再进行模糊
         Glide.with(this).load(mixInfo.getCoverImgUrl())
                 .dontAnimate()
                 //.placeholder(Color.GRAY)
                 //.error(Color.GRAY)
-                .transform(new BlurTransformation(25, 3))
-                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3)))
+                .transform(new BlurTransformation(25, 5))
+                .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 5)))
                 .into(img_item_bg);
     }
 
@@ -441,6 +441,7 @@ public class SongListActivity extends BaseActivity {
                                     if (songInfo.getId().equals(songUrlInfo.getId())) {
                                         songInfo.setUrl(songUrlInfo.getUrl());
                                         songInfo.setSize(songUrlInfo.getSize());
+                                        songInfo.setFee(songUrlInfo.getFee());
                                     }
                                 }
                             }
@@ -455,9 +456,10 @@ public class SongListActivity extends BaseActivity {
                                 musicInfo.setArtist(songInfos.get(i).getAr().get(0).getName());
                                 musicInfo.setCoverPath(songInfos.get(i).getAl().getPicUrl());
                                 musicInfo.setAlbum(songInfos.get(i).getAl().getName());
-                                String path = "https://music.163.com/song/media/outer/url?id=" + Long.parseLong(songInfos.get(i).getId()) + ".mp3";
-                                musicInfo.setPath(path);
-                                //musicInfo.setPath(songInfos.get(i).getUrl());
+                                //String path = "https://music.163.com/song/media/outer/url?id=" + Long.parseLong(songInfos.get(i).getId()) + ".mp3";
+                                //musicInfo.setPath(path);
+                                musicInfo.setPath(songInfos.get(i).getUrl());
+                                musicInfo.setFee(songInfos.get(i).getFee());
                                 musicInfos.add(musicInfo);
                                 //}
                             }

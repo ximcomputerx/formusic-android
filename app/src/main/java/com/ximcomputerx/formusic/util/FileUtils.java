@@ -8,6 +8,7 @@ import com.ximcomputerx.formusic.model.MusicInfo;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Locale;
@@ -22,7 +23,7 @@ public class FileUtils {
     private static final String LRC = ".lrc";
 
     private static String getAppDir() {
-        return Environment.getExternalStorageDirectory() + "/CloudMusic";
+        return Environment.getExternalStorageDirectory() + "/ForMusic";
     }
 
     public static String getMusicDir() {
@@ -51,7 +52,7 @@ public class FileUtils {
     }
 
     public static String getRelativeMusicDir() {
-        String dir = "CloudMusic/Music/";
+        String dir = "ForMusic/Music/";
         return mkdirs(dir);
     }
 
@@ -156,5 +157,72 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 把字符串写到文件中
+     *
+     * @param filePath 文件相对路径
+     * @param fileName 文件名
+     * @param content  写入字符串
+     * @return
+     */
+    public static boolean writeString2File(String filePath, String fileName, String content) {
+        File file = crateFile(filePath, fileName);
+        if (TextUtils.isEmpty(content) || file == null) return false;
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(file, true);
+            bw = new BufferedWriter(fw);
+            bw.write(content);
+            bw.write("\n");
+            bw.flush();
+            bw.close();
+            fw.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 创建文件
+     *
+     * @param filePath 文件路径
+     * @param fileName 文件命
+     * @return
+     */
+    public static File crateFile(String filePath, String fileName) {
+        File file = null;
+        try {
+            file = new File(filePath, fileName);
+            if (!file.exists()) {
+                //如果文件不存在，先创建文件夹，再创建文件
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } else {
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    public static File renameFile(String oldPath, String newPath) {
+        if (TextUtils.isEmpty(oldPath)) {
+            return null;
+        }
+
+        if (TextUtils.isEmpty(newPath)) {
+            return null;
+        }
+        File oldFile = new File(oldPath);
+        File newFile = new File(newPath);
+        boolean b = oldFile.renameTo(newFile);
+        File file2 = new File(newPath);
+        return file2;
     }
 }

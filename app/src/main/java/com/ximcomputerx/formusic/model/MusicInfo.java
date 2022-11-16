@@ -21,6 +21,7 @@ public class MusicInfo extends LitePalSupport implements Serializable{
     private String path;        // 播放地址
     private String fileName;    // [本地]文件名
     private long fileSize;      // [本地]文件大小
+    private int fee;
 
     private boolean isPlay;
 
@@ -136,4 +137,11 @@ public class MusicInfo extends LitePalSupport implements Serializable{
         isPlay = play;
     }
 
+    public int getFee() {
+        return fee;
+    }
+
+    public void setFee(int fee) {
+        this.fee = fee;
+    }
 }
