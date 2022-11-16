@@ -58,8 +58,8 @@ public class Constant {
     public static final int PLAY_SINGLE = 1;        //单曲循环
     public static final int PLAY_RANDOM = 2;        //随机播放
 
-    //public static final String URL_SERVICE = "http://192.168.0.105:3000";
-    public static final String URL_SERVICE = "http://39.99.235.220:3000";
+    public static final String URL_SERVICE = "http://www.formusic.me:3000";
+    //public static final String URL_SERVICE = "http://39.99.235.220:3000";
     public static final String URL_SERVICE_UPDATE = "http://39.99.235.220:8080/version";
 
     //排行榜

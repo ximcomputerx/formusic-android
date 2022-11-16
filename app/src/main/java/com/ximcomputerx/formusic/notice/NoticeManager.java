@@ -86,7 +86,6 @@ public class NoticeManager {
             public void onLoadCleared(@Nullable Drawable placeholder) {
             }
         });
-        //playService.startForeground(NOTIFICATION_ID, buildNotification(playService, music, true));
     }
 
     /**
@@ -148,9 +147,9 @@ public class NoticeManager {
                 .setCustomContentView(getRemoteViews(context, music, isPlaying, bitmap));
 
         //增加一個渠道，ID不重复即可
-        String CHANNEL_ID = "123456";
-        String CHANNEL_NAME = "听音";
-        String DESCRIPTION = "听音";
+        String CHANNEL_ID = "CHANNEL_FORMUSIC";
+        String CHANNEL_NAME = context.getResources().getString(R.string.app_name);
+        String DESCRIPTION = context.getResources().getString(R.string.app_name);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             //修改安卓8.1以上系统报错
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_MIN);
@@ -177,23 +176,6 @@ public class NoticeManager {
         String title = music.getTitle();
         String subtitle = music.getArtist();
 
-        //实例化RemoteViews对象，传入当前应用的包名和自定义的通知样式布局
-        //RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_music);
-        /*if (cover != null) {
-            remoteViews.setImageViewBitmap(R.id.iv_icon, cover);
-        } else {
-            remoteViews.setImageViewResource(R.id.iv_icon, R.mipmap.ic_launcher);
-        }*/
-        /*Glide.with(playService)
-                .asBitmap()
-                .load(music.getCoverPath())
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        //ToastUtil.showShortToast(playService, "加载成功。。。。");
-                        remoteViews.setImageViewBitmap(R.id.iv_icon, resource);
-                    }
-                });*/
         remoteViews.setImageViewBitmap(R.id.iv_icon, bitmap);
         //remoteViews.setImageViewResource(R.id.iv_icon, R.mipmap.ic_launcher);
         remoteViews.setTextViewText(R.id.tv_title, title);

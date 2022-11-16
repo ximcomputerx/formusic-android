@@ -45,8 +45,6 @@ public class PlayService extends Service {
         PlayManager.getInstance().init(this);
         MediaSessionManager.getInstance().init(this);
         NoticeManager.getInstance().init(this);
-        // TODO
-        //QuitTimer.get().init(this);
     }
 
     /**
@@ -86,8 +84,6 @@ public class PlayService extends Service {
     private void stop() {
         PlayManager.getInstance().stopPlayer();
         //NoticeManager.getInstance().cancelAll();
-        // TODO
-        //QuitTimer.get().stop();
     }
 
 }
