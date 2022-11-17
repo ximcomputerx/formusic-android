@@ -28,6 +28,7 @@ import com.ximcomputerx.formusic.model.MusicInfo;
 import com.ximcomputerx.formusic.receiver.StatusBarReceiver;
 import com.ximcomputerx.formusic.service.PlayService;
 import com.ximcomputerx.formusic.ui.activity.MainActivity;
+import com.ximcomputerx.formusic.util.LinNotify;
 
 /**
  * 通知栏管理器
@@ -37,9 +38,13 @@ public class NoticeManager {
     private PlayService playService;
     private NotificationManager notificationManager;
     private RemoteViews remoteViews;
+    private static String CHANNEL_ID = "11111111";
+    public static String CHANNEL_NAME = ForMusicApplication.getInstance().getResources().getString(R.string.app_name);
+    public static String DESCRIPTION = ForMusicApplication.getInstance().getResources().getString(R.string.app_name);
 
     /**
      * 单实例
+     *
      * @return
      */
     public static NoticeManager getInstance() {
@@ -56,16 +61,19 @@ public class NoticeManager {
 
     /**
      * 初始化通知栏
+     *
      * @param playService
      */
     public void init(PlayService playService) {
         this.playService = playService;
         notificationManager = (NotificationManager) playService.getSystemService(Context.NOTIFICATION_SERVICE);
         remoteViews = new RemoteViews(ForMusicApplication.getInstance().getPackageName(), R.layout.notification_music);
+        LinNotify.createNotificationChannel(ForMusicApplication.getInstance(), CHANNEL_ID, NoticeManager.CHANNEL_NAME, NotificationManager.IMPORTANCE_MAX);
     }
 
     /**
      * 显示音乐播放信息
+     *
      * @param music
      */
     public void showPlay(final MusicInfo music) {
@@ -73,13 +81,32 @@ public class NoticeManager {
             return;
         }
         Bitmap bitmap = BitmapFactory.decodeResource(ForMusicApplication.getInstance().getResources(), R.mipmap.play_page_default_cover);
-        playService.startForeground(NOTIFICATION_ID, buildNotification(playService, music, true, bitmap));
+        //playService.startForeground(NOTIFICATION_ID, buildNotification(playService, music, true, bitmap));
         Glide.with(ForMusicApplication.getInstance())
                 .load(music.getCoverPath())
                 .into(new CustomTarget<Drawable>() {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                playService.startForeground(NOTIFICATION_ID, buildNotification(playService, music, true, drawableToBitmap(resource)));
+                //playService.startForeground(NOTIFICATION_ID, buildNotification(playService, music, true, drawableToBitmap(resource)));
+                Intent intent = new Intent(ForMusicApplication.getInstance(), MainActivity.class);
+                intent.putExtra(Constant.EXTRA_NOTIFICATION, true);
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                PendingIntent pendingIntent = PendingIntent.getActivity(ForMusicApplication.getInstance(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                String title = music.getTitle();
+                String subtitle = music.getArtist();
+
+                remoteViews.setImageViewBitmap(R.id.iv_icon, drawableToBitmap(resource));
+                //remoteViews.setImageViewResource(R.id.iv_icon, R.mipmap.ic_launcher);
+                remoteViews.setTextViewText(R.id.tv_title, title);
+                remoteViews.setTextViewText(R.id.tv_subtitle, subtitle);
+
+                remoteViews.setImageViewResource(R.id.iv_play_pause, getPlayIconRes(true));
+
+                LinNotify.show(ForMusicApplication.getInstance(), "", "", remoteViews, NoticeManager.CHANNEL_ID, pendingIntent);
             }
 
             @Override
@@ -90,28 +117,47 @@ public class NoticeManager {
 
     /**
      * 显示音乐停止信息
+     *
      * @param music
      */
     public void showPause(final MusicInfo music) {
         if (music == null) {
             return;
         }
-        //playService.stopForeground(false);
         Bitmap bitmap = BitmapFactory.decodeResource(ForMusicApplication.getInstance().getResources(), R.mipmap.play_page_default_cover);
-        notificationManager.notify(NOTIFICATION_ID, buildNotification(playService, music, false, bitmap));
+        //notificationManager.notify(NOTIFICATION_ID, buildNotification(playService, music, false, bitmap));
         Glide.with(ForMusicApplication.getInstance())
                 .load(music.getCoverPath())
                 .into(new CustomTarget<Drawable>() {
-            @Override
-            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                notificationManager.notify(NOTIFICATION_ID, buildNotification(playService, music, false, drawableToBitmap(resource)));
-            }
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        //notificationManager.notify(NOTIFICATION_ID, buildNotification(playService, music, false, drawableToBitmap(resource)));
+                        Intent intent = new Intent(ForMusicApplication.getInstance(), MainActivity.class);
+                        intent.putExtra(Constant.EXTRA_NOTIFICATION, true);
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(ForMusicApplication.getInstance(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
+                        String title = music.getTitle();
+                        String subtitle = music.getArtist();
 
-            }
-        });
+                        remoteViews.setImageViewBitmap(R.id.iv_icon, drawableToBitmap(resource));
+                        //remoteViews.setImageViewResource(R.id.iv_icon, R.mipmap.ic_launcher);
+                        remoteViews.setTextViewText(R.id.tv_title, title);
+                        remoteViews.setTextViewText(R.id.tv_subtitle, subtitle);
+
+                        remoteViews.setImageViewResource(R.id.iv_play_pause, getPlayIconRes(false));
+
+                        LinNotify.show(ForMusicApplication.getInstance(), "", "", remoteViews, NoticeManager.CHANNEL_ID, pendingIntent);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
     }
 
@@ -120,53 +166,8 @@ public class NoticeManager {
     }
 
     /**
-     * 构建通知栏
-     * @param context
-     * @param music
-     * @param isPlaying
-     * @return
-     */
-    private Notification buildNotification(Context context, MusicInfo music, boolean isPlaying, Bitmap bitmap) {
-
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(Constant.EXTRA_NOTIFICATION, true);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Bitmap bitmaps = BitmapFactory.decodeResource(context.getResources(), R.mipmap.play_page_default_cover);
-
-        // 构建通知栏
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .setContentIntent(pendingIntent)
-                .setSmallIcon(R.mipmap.play_page_default_cover)
-                .setLargeIcon(bitmaps)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setCustomContentView(getRemoteViews(context, music, isPlaying, bitmap));
-
-        //增加一個渠道，ID不重复即可
-        String CHANNEL_ID = "CHANNEL_FORMUSIC";
-        String CHANNEL_NAME = context.getResources().getString(R.string.app_name);
-        String DESCRIPTION = context.getResources().getString(R.string.app_name);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            //修改安卓8.1以上系统报错
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_MIN);
-            notificationChannel.enableLights(false);//如果使用中的设备支持通知灯，则说明此通知通道是否应显示灯
-            notificationChannel.setShowBadge(false);//是否显示角标
-            notificationChannel.setShowBadge(false);//是否显示角标
-            notificationChannel.setDescription(DESCRIPTION);//是否显示角标
-            notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
-            NotificationManager manager = (NotificationManager) playService.getSystemService(Context.NOTIFICATION_SERVICE);
-            manager.createNotificationChannel(notificationChannel);
-            builder.setChannelId(CHANNEL_ID);
-        }
-        return builder.build();
-    }
-
-    /**
      * 获取自定义布局
+     *
      * @param context
      * @param music
      * @param isPlaying
